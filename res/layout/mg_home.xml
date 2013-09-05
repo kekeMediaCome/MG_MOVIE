@@ -8,10 +8,6 @@
         android:id="@id/actionbar"
         style="@style/ActionBar" />
 
-    <include
-        style="@style/mj_banner"
-        layout="@layout/mg_banner" />
-
     <ListView
         android:id="@id/listview"
         android:layout_width="match_parent"

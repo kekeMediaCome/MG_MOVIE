@@ -7,18 +7,26 @@ import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
 import android.support.v4.view.PagerAdapter;
 import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
+import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
 
 import com.mg_movie.R;
+import com.mg_movie.adapter.MG_HomeAdapter;
+import com.mg_movie.parser.Parse_home_content;
+import com.mg_movie.type.Type_home_content;
 
 public class MG_HOME extends MG_BaseActivity {
 
@@ -34,7 +42,11 @@ public class MG_HOME extends MG_BaseActivity {
 	// An ExecutorService that can schedule commands to run after a given delay,
 	// or to execute periodically.
 	private ScheduledExecutorService scheduledExecutorService;
-
+	private View listViewHeader;
+	private ListView listView;
+	private List<Type_home_content> lists;
+	private MG_HomeAdapter adapter;
+	public LayoutInflater inflater;
 	// 切换当前显示的图片
 	@SuppressLint("HandlerLeak")
 	private Handler handler = new Handler() {
@@ -49,6 +61,8 @@ public class MG_HOME extends MG_BaseActivity {
 		setContentView(R.layout.mg_home);
 		initActionBar(R.string.layout_title_home);
 		initActionBarCompont(MG_MOVIE.class);
+		inflater = LayoutInflater.from(this);
+		listViewHeader = inflater.inflate(R.layout.mg_banner, null);
 		imageResId = new int[] { R.drawable.dot0, R.drawable.dot1, R.drawable.dot2,
 				R.drawable.dot3, R.drawable.dot4 };
 		titles = new String[imageResId.length];
@@ -58,6 +72,7 @@ public class MG_HOME extends MG_BaseActivity {
 		titles[3] = "乐视网TV版大派送";
 		titles[4] = "热血屌丝的反杀";
 
+		
 		imageViews = new ArrayList<ImageView>();
 
 		// 初始化图片资源
@@ -69,19 +84,25 @@ public class MG_HOME extends MG_BaseActivity {
 		}
 
 		dots = new ArrayList<View>();
-		dots.add(findViewById(R.id.v_dot0));
-		dots.add(findViewById(R.id.v_dot1));
-		dots.add(findViewById(R.id.v_dot2));
-		dots.add(findViewById(R.id.v_dot3));
-		dots.add(findViewById(R.id.v_dot4));
+		dots.add(listViewHeader.findViewById(R.id.v_dot0));
+		dots.add(listViewHeader.findViewById(R.id.v_dot1));
+		dots.add(listViewHeader.findViewById(R.id.v_dot2));
+		dots.add(listViewHeader.findViewById(R.id.v_dot3));
+		dots.add(listViewHeader.findViewById(R.id.v_dot4));
 
-		tv_title = (TextView) findViewById(R.id.tv_title);
-		tv_title.setText(titles[0]);//
+		tv_title = (TextView) listViewHeader.findViewById(R.id.tv_title);
+		tv_title.setText(titles[0]);
 
-		viewPager = (ViewPager) findViewById(R.id.vp);
+		viewPager = (ViewPager) listViewHeader.findViewById(R.id.vp);
 		viewPager.setAdapter(new MyAdapter());// 设置填充ViewPager页面的适配器
 		// 设置一个监听器，当ViewPager中的页面改变时调用
 		viewPager.setOnPageChangeListener(new MyPageChangeListener());
+		listView = (ListView)findViewById(R.id.listview);
+		listView.addHeaderView(listViewHeader, null, true);
+		lists = new Parse_home_content().getHomeContent();
+		adapter = new MG_HomeAdapter(inflater, lists);
+		listView.setAdapter(adapter);
+		listView.setOnItemClickListener(new ListItemOnClik());
 	}
 
 	@Override
@@ -115,6 +136,21 @@ public class MG_HOME extends MG_BaseActivity {
 		}
 	}
 
+	/**
+	 * @author jie
+	 */
+	private class ListItemOnClik implements OnItemClickListener{
+		@Override
+		public void onItemClick(AdapterView<?> parent, View view, int position,
+				long id) {
+			Type_home_content type = lists.get(position);
+			if (type.getCls_packet() !=  null) {
+				Intent intent = new Intent();
+				intent.setClassName(MG_HOME.this, type.getCls_packet());
+			}
+		}
+		
+	}
 	/**
 	 * 当ViewPager中页面的状态发生改变时调用
 	 * 

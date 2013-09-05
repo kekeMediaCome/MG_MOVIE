@@ -19,4 +19,6 @@
     <item type="id" name="firstlaod_indicator">false</item>
     <item type="id" name="actionbar">false</item>
     <item type="id" name="listview">false</item>
+    <item type="id" name="item_img_icon">false</item>
+    <item type="id" name="item_title">false</item>
 </resources>
