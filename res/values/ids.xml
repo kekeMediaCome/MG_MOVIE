@@ -1,0 +1,8 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <item type="id" name="splash_img"></item>
+    <item type="id" name="pull_refresh_grid">false</item>
+    <item type="id" name="video_img">false</item>
+    <item type="id" name="video_title">false</item>
+    <item type="id" name="video_mask">false</item>
+</resources>
