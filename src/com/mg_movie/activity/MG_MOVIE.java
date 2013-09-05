@@ -40,7 +40,7 @@ public class MG_MOVIE extends AbsListViewBaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.kk__movie);
+		setContentView(R.layout.mg__movie);
 		instance = this;
 		writeFirstParm();
 		MG_Exit.getInstance().addActivity(this);

@@ -1,6 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
-    <item type="id" name="splash_img"></item>
+    <item type="id" name="mainLayout">false</item>
+    <item type="id" name="mainlayout_gridview"></item>
+    <item type="id" name="splash_img">false</item>
     <item type="id" name="pull_refresh_grid">false</item>
     <item type="id" name="video_img">false</item>
     <item type="id" name="video_title">false</item>
@@ -15,4 +17,6 @@
     <item type="id" name="operation_percent">false</item>
     <item type="id" name="firstload_pager">false</item>
     <item type="id" name="firstlaod_indicator">false</item>
+    <item type="id" name="actionbar">false</item>
+    <item type="id" name="listview">false</item>
 </resources>

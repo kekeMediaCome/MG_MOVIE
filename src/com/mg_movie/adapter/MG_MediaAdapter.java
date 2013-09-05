@@ -63,7 +63,7 @@ public class MG_MediaAdapter extends BaseAdapter {
 		ViewHolder viewHolder;
 		if (convertView == null) {
 			viewHolder = new ViewHolder();
-			convertView = inflater.inflate(R.layout.kk_movie_item, null);
+			convertView = inflater.inflate(R.layout.mg_movie_item, null);
 			viewHolder.video_img = (ImageView) convertView
 					.findViewById(R.id.video_img);
 			viewHolder.video_mark = (TextView) convertView

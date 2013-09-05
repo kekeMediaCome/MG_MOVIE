@@ -11,6 +11,7 @@
     <string name="video_parse_loading">加载中....</string>
     <string name="video_cover_title">媒聚</string>
     <string name="video_cover_mark">高清</string>
+    <string name="layout_title_home">Home</string>
     <string name="menu_item_clear_memory_cache">Clear memory cache</string>
     <string name="menu_item_clear_disc_cache">Clear disc cache</string>
     <string name="menu_item_pause_on_scroll">Pause on scroll</string>

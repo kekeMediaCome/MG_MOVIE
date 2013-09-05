@@ -41,16 +41,21 @@
         <activity
             android:name="com.mg_movie.activity.MG_Splash"
             android:label="@string/app_name" >
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity
             android:name="com.mg_movie.firstloader.MG_FirstLoad"
             android:label="@string/app_name"
             android:theme="@style/StyledIndicators" >
+        </activity>
+        <activity
+            android:name="com.mg_movie.activity.MG_HOME"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar" >
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity
             android:name="com.mg_movie.activity.MG_MOVIE"

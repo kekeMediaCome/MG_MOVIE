@@ -30,7 +30,7 @@ public class MG_Splash extends MG_BaseActivity implements AnimationListener{
 		AppLog.enableLogging(true);
 		MG_Exit.getInstance().addActivity(this);
 		new InitData().execute();
-		loadAnimation();		
+		loadAnimation();	
 		SplashLogo = (ImageView)findViewById(R.id.splash_img);
 		SplashLogo.startAnimation(alphaAnimation);
 	}
