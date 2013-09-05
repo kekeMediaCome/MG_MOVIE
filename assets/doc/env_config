@@ -1,0 +1,10 @@
+一、Dependent libraries
+1.Vitamio:
+VitamioBundle_links:	https://github.com/yixia/VitamioBundle.git
+ZI_links:	 https://github.com/yixia/ZI.git
+2.loadImage:
+Android-Universal-Image-Loader:		https://github.com/nostra13/Android-Universal-Image-Loader.git
+3.PullToRefresh
+Android-PullToRefresh：		https://github.com/chrisbanes/Android-PullToRefresh.git
+4.ViewPagerIndicator
+Android-ViewPagerIndicator：		https://github.com/JakeWharton/Android-ViewPagerIndicator.git
