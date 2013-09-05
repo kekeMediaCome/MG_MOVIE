@@ -6,9 +6,10 @@ import android.view.MenuItem;
 import android.widget.AbsListView;
 
 import com.mg_movie.R;
+import com.mg_movie.activity.MG_BaseActivity;
 import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
 
-public class AbsListViewBaseActivity extends BaseActivity {
+public class AbsListViewBaseActivity extends MG_BaseActivity {
 
 	protected static final String STATE_PAUSE_ON_SCROLL = "STATE_PAUSE_ON_SCROLL";
 	protected static final String STATE_PAUSE_ON_FLING = "STATE_PAUSE_ON_FLING";

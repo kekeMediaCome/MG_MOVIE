@@ -1,18 +1,18 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_width="fill_parent"
-    android:layout_height="fill_parent"
-    android:id="@+id/checkparent"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:id="@id/checkparent"
     android:orientation="vertical" >
 
     <io.vov.vitamio.widget.VideoView
-        android:id="@+id/surface_view"
-        android:layout_width="fill_parent"
-        android:layout_height="fill_parent"
+        android:id="@id/surface_view"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
         android:layout_centerHorizontal="true"
         android:layout_centerVertical="true" />
     <LinearLayout
-        android:id="@+id/video_loading"
+        android:id="@id/video_loading"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -23,7 +23,7 @@
             android:layout_height="wrap_content" />
 
         <TextView
-            android:id="@+id/video_loading_perce"
+            android:id="@id/video_loading_perce"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:paddingTop="7.0dip"
@@ -33,7 +33,7 @@
     </LinearLayout>
 
     <FrameLayout
-        android:id="@+id/operation_volume_brightness"
+        android:id="@id/operation_volume_brightness"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_centerInParent="true"
@@ -43,7 +43,7 @@
         android:visibility="invisible" >
 
         <ImageView
-            android:id="@+id/operation_bg"
+            android:id="@id/operation_bg"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
@@ -58,7 +58,7 @@
             android:paddingBottom="25dip" >
 
             <ImageView
-                android:id="@+id/operation_full"
+                android:id="@id/operation_full"
                 android:layout_width="94dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"
@@ -66,7 +66,7 @@
                 android:src="@drawable/video_num_bg" />
 
             <ImageView
-                android:id="@+id/operation_percent"
+                android:id="@id/operation_percent"
                 android:layout_width="0dip"
                 android:layout_height="wrap_content"
                 android:layout_gravity="left"

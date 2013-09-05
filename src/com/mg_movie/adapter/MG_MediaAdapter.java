@@ -26,7 +26,6 @@ public class MG_MediaAdapter extends BaseAdapter {
 	public MG_MediaAdapter(Context context, ImageLoader imageLoader) {
 		inflater = LayoutInflater.from(context);
 		options = new DisplayImageOptions.Builder()
-				.showStubImage(R.drawable.ic_stub)
 				.showImageForEmptyUri(R.drawable.ic_empty)
 				.showImageOnFail(R.drawable.ic_error).cacheInMemory(true)
 				.cacheOnDisc(true).displayer(new RoundedBitmapDisplayer(20))
@@ -75,7 +74,7 @@ public class MG_MediaAdapter extends BaseAdapter {
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
-		
+
 		Type_v_qq_com movieType = listItems.get(position);
 		viewHolder.video_mark.setText(movieType.getVideo_mark());
 		viewHolder.video_title.setText(movieType.getVideo_title());

@@ -9,7 +9,7 @@ import android.util.Log;
  */
 public class AppLog
 {
-    private static boolean showLog = false;
+    private static boolean showLog = true;
 
     /**
      * 是否显示日志

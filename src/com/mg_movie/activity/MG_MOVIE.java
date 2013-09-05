@@ -8,6 +8,7 @@ import com.handmark.pulltorefresh.library.PullToRefreshGridView;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.mg_movie.AppLog;
+import com.mg_movie.MG_Exit;
 import com.mg_movie.R;
 import com.mg_movie.adapter.MG_MediaAdapter;
 import com.mg_movie.imageloader.AbsListViewBaseActivity;
@@ -26,10 +27,10 @@ import android.widget.GridView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class KK_MOVIE extends AbsListViewBaseActivity {
+public class MG_MOVIE extends AbsListViewBaseActivity {
 
 	private PullToRefreshGridView movieRefresh;
-	public KK_MOVIE instance;
+	public MG_MOVIE instance;
 	MG_MediaAdapter adapter;
 	VParser vParser;
 	public ArrayList<String> pages;
@@ -41,6 +42,8 @@ public class KK_MOVIE extends AbsListViewBaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.kk__movie);
 		instance = this;
+		writeFirstParm();
+		MG_Exit.getInstance().addActivity(this);
 		pages = getIntent().getStringArrayListExtra("pages");
 		count = pages.size();
 		movieRefresh = (PullToRefreshGridView)findViewById(R.id.pull_refresh_grid);
@@ -54,7 +57,7 @@ public class KK_MOVIE extends AbsListViewBaseActivity {
 					new InitData().execute();
 				}else {
 					movieRefresh.onRefreshComplete();
-					Toast.makeText(instance, "已经全部加载完毕...", Toast.LENGTH_SHORT).show();
+					Toast.makeText(instance, R.string.refrash_all_finish, Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
@@ -72,7 +75,7 @@ public class KK_MOVIE extends AbsListViewBaseActivity {
 					Intent intent = new Intent();
 					intent.putExtra("path", video.videoUri);
 					intent.putExtra("title", list_main.get(position).getVideo_title());
-					intent.setClass(KK_MOVIE.this,JieLiveVideoPlayer.class);
+					intent.setClass(MG_MOVIE.this, JieLiveVideoPlayer.class);
 					startActivity(intent);
 				}else {
 					AppLog.e("null");

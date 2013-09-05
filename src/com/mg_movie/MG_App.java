@@ -1,7 +1,5 @@
 package com.mg_movie;
 
-import io.vov.vitamio.utils.Log;
-
 import com.nostra13.universalimageloader.cache.disc.naming.Md5FileNameGenerator;
 import com.nostra13.universalimageloader.core.ImageLoader;
 import com.nostra13.universalimageloader.core.ImageLoaderConfiguration;
@@ -16,7 +14,6 @@ public class MG_App extends Application {
 	public void onCreate() {
 		super.onCreate();
 		initImageLoader(getApplicationContext());
-		Log.e("test", "app_creatte");
 	}
 
 	public static void initImageLoader(Context context) {

@@ -2,10 +2,15 @@
 <resources>
 
     <string name="app_name">媒聚</string>
-    <string name="action_settings">Settings</string>
-    <string name="hello_world">Hello world!</string>
+    <string name="action_settings">设置</string>
     <string name="imageviewconscrip">MG_Movie</string>
     <string name="video_layout_loading">正在缓冲…</string>
+    <string name="network_check_error">请检查网络环境，稍后再试</string>
+    <string name="double_back_exit">再次点击退出，媒聚</string>
+    <string name="refrash_all_finish">已经全部加载完毕....</string>
+    <string name="video_parse_loading">加载中....</string>
+    <string name="video_cover_title">媒聚</string>
+    <string name="video_cover_mark">高清</string>
     <string name="menu_item_clear_memory_cache">Clear memory cache</string>
     <string name="menu_item_clear_disc_cache">Clear disc cache</string>
     <string name="menu_item_pause_on_scroll">Pause on scroll</string>

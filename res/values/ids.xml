@@ -5,4 +5,14 @@
     <item type="id" name="video_img">false</item>
     <item type="id" name="video_title">false</item>
     <item type="id" name="video_mask">false</item>
+    <item type="id" name="checkparent">false</item>
+    <item type="id" name="surface_view">false</item>
+    <item type="id" name="video_loading">false</item>
+    <item type="id" name="video_loading_perce">false</item>
+    <item type="id" name="operation_volume_brightness">false</item>
+    <item type="id" name="operation_bg">false</item>
+    <item type="id" name="operation_full">false</item>
+    <item type="id" name="operation_percent">false</item>
+    <item type="id" name="firstload_pager">false</item>
+    <item type="id" name="firstlaod_indicator">false</item>
 </resources>
