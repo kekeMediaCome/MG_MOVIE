@@ -77,7 +77,7 @@ public class MG_MediaAdapter extends BaseAdapter {
 
 		Type_v_qq_com movieType = listItems.get(position);
 		viewHolder.video_mark.setText(movieType.getVideo_mark());
-		viewHolder.video_title.setText(movieType.getVideo_title());
+		viewHolder.video_title.setText(movieType.getVideo_name());
 		imageLoader.displayImage(movieType.getVideo_img(),
 				viewHolder.video_img, options);
 		return convertView;

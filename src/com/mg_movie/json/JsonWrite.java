@@ -44,7 +44,7 @@ public class JsonWrite {
 			for (int i = 0; i < size; i++) {
 				Type_v_qq_com qqVideo = qqVidoes.get(i);
 				JSONObject jsonObject = new JSONObject();
-				jsonObject.put("video_title", qqVideo.getVideo_title());
+				jsonObject.put("video_title", qqVideo.getVideo_name());
 				jsonObject.put("video_url", qqVideo.getVideo_url());
 				jsonObject.put("video_img", qqVideo.getVideo_img());
 				jsonObject.put("video_mark", qqVideo.getVideo_mark());

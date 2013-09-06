@@ -74,7 +74,7 @@ public class MG_MOVIE extends AbsListViewBaseActivity {
 					AppLog.e(video.videoUri);
 					Intent intent = new Intent();
 					intent.putExtra("path", video.videoUri);
-					intent.putExtra("title", list_main.get(position).getVideo_title());
+					intent.putExtra("title", list_main.get(position).getVideo_name());
 					intent.setClass(MG_MOVIE.this, JieLiveVideoPlayer.class);
 					startActivity(intent);
 				}else {
