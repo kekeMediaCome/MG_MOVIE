@@ -40,8 +40,8 @@ public class Parser_v_qq_com {
 		Type_v_qq_com qq_video = null;
 		try {
 			Document document = Jsoup.connect(url_stite).get();
-			Element mod_cont = document.getElementById("content");
-			Elements mod_list_pic_130_lis = mod_cont.select("li");
+			Element tv_extend = document.getElementById("content");
+			Elements mod_list_pic_130_lis = tv_extend.select("li");
 			for (Element element : mod_list_pic_130_lis) {
 				Elements video = element.select("a");
 				if (video != null && video.size() != 0) {
@@ -71,6 +71,8 @@ public class Parser_v_qq_com {
 		String source = "qita";
 		if (url.indexOf("http://v.qq.com") != -1) {
 			source = "tencent";
+		}else if (url.indexOf("http://video.56.com") != -1) {
+			source = "56";
 		}
 		return source;
 	}
