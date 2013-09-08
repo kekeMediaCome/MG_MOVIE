@@ -1,5 +1,6 @@
 package com.mg_movie.parser;
 
+import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -42,7 +43,7 @@ public class Parser_movielist_56_com {
 			Elements videos = tv_extend.select("dl");
 			for (Element element : videos) {
 				Element a_img = element.select("a").first();
-				String video_url = a_img.attr("href");
+				String video_url = ParseRealUrl(a_img.attr("href"));
 				String video_mark = a_img.text();
 				Element img = a_img.select("img").first();
 				String video_name = img.attr("alt");
@@ -61,6 +62,20 @@ public class Parser_movielist_56_com {
 			exception.printStackTrace();
 		}
 		return lists;
+	}
+	
+	public String ParseRealUrl(String url){
+		String realUrl = url;
+		try {
+			Document document = Jsoup.connect(url).get();
+			Elements top_focus_btn = document.select("a.top_focus_btn");
+			if (top_focus_btn != null && top_focus_btn.size() != 0) {
+				realUrl = top_focus_btn.get(0).attr("href");
+			}
+		} catch (IOException e) {
+			e.printStackTrace();
+		}
+		return realUrl;
 	}
 
 	public String checkSource(String url){
