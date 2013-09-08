@@ -9,7 +9,6 @@
         android:id="@id/item_img_icon"
         android:layout_width="@dimen/home_listview_item_img_width"
         android:layout_height="@dimen/home_listview_item_img_width"
-        android:layout_marginLeft="5dp"
         android:contentDescription="@string/imageviewconscrip" />
 
     <TextView

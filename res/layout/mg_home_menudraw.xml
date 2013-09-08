@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+    
+    <TextView 
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:id="@id/home_menudraw_title"
+        android:gravity="center"
+        android:textSize="40sp"
+        android:text="@string/app_name"
+        />
+	<ListView
+        android:id="@id/home_menudraw_listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_below="@id/home_menudraw_title"
+        android:layout_marginTop="0.0dip"
+        android:background="#ff2f2f2f"
+        android:cacheColorHint="#00000000"
+        android:divider="@drawable/cbox_uc_divider"
+        android:fadeScrollbars="false"
+        android:fastScrollEnabled="false"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbars="none"
+        android:scrollingCache="false" >
+    </ListView>
+    
+</RelativeLayout>

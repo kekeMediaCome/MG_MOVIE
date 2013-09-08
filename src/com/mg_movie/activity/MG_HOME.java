@@ -6,6 +6,9 @@ import java.util.concurrent.Executors;
 import java.util.concurrent.ScheduledExecutorService;
 import java.util.concurrent.TimeUnit;
 
+import net.simonvt.menudrawer.MenuDrawer;
+import net.simonvt.menudrawer.Position;
+
 import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.os.Bundle;
@@ -16,6 +19,7 @@ import android.support.v4.view.ViewPager;
 import android.support.v4.view.ViewPager.OnPageChangeListener;
 import android.view.LayoutInflater;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
@@ -23,12 +27,14 @@ import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
 
+import com.mg_movie.MG_Exit;
 import com.mg_movie.R;
 import com.mg_movie.adapter.MG_HomeAdapter;
+import com.mg_movie.adapter.MG__Home_MenuDraw_Adapter;
 import com.mg_movie.parser.Parse_home_content;
 import com.mg_movie.type.Type_home_content;
 
-public class MG_HOME extends MG_BaseActivity {
+public class MG_HOME extends MG_BaseActivity implements OnClickListener{
 
 	private ViewPager viewPager; // android-support-v4中的滑动组件
 	private List<ImageView> imageViews; // 滑动的图片集合
@@ -47,6 +53,8 @@ public class MG_HOME extends MG_BaseActivity {
 	private List<Type_home_content> lists;
 	private MG_HomeAdapter adapter;
 	public LayoutInflater inflater;
+	private MenuDrawer mMenuDrawer;
+	private MG__Home_MenuDraw_Adapter menuAdapter;
 	// 切换当前显示的图片
 	@SuppressLint("HandlerLeak")
 	private Handler handler = new Handler() {
@@ -58,9 +66,14 @@ public class MG_HOME extends MG_BaseActivity {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.mg_home);
-		initActionBar(R.string.layout_title_home);
-		initActionBarCompont(MG_MOVIE.class);
+		MG_Exit.getInstance().addActivity(this);
+		//设置右侧的menu
+		mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.Type.BEHIND, Position.LEFT, MenuDrawer.MENU_DRAG_CONTENT);
+		mMenuDrawer.setMenuView(R.layout.mg_home_menudraw);
+		mMenuDrawer.setContentView(R.layout.mg_home);
+		findViewById(R.id.home_top_menudraw).setOnClickListener(this);
+		TextView home_top_name = (TextView)findViewById(R.id.home_top_name);
+		home_top_name.setText("Home");
 		inflater = LayoutInflater.from(this);
 		listViewHeader = inflater.inflate(R.layout.mg_banner, null);
 		imageResId = new int[] { R.drawable.dot0, R.drawable.dot1, R.drawable.dot2,
@@ -103,6 +116,8 @@ public class MG_HOME extends MG_BaseActivity {
 		adapter = new MG_HomeAdapter(inflater, lists);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new ListItemOnClik());
+		
+	
 	}
 
 	@Override
@@ -223,6 +238,22 @@ public class MG_HOME extends MG_BaseActivity {
 		@Override
 		public void finishUpdate(View arg0) {
 
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.home_top_menudraw:
+			if (mMenuDrawer.isMenuVisible()) {
+				mMenuDrawer.closeMenu();
+			}else {
+				mMenuDrawer.openMenu();
+			}
+			break;
+
+		default:
+			break;
 		}
 	}
 }

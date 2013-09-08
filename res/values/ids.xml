@@ -21,4 +21,8 @@
     <item type="id" name="listview">false</item>
     <item type="id" name="item_img_icon">false</item>
     <item type="id" name="item_title">false</item>
+    <item type="id" name="home_menudraw_title">false</item>
+    <item type="id" name="home_menudraw_listview">false</item>
+    <item type="id" name="home_top_menudraw">false</item>
+    <item type="id" name="home_top_name">false</item>
 </resources>

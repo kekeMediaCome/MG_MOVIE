@@ -127,8 +127,7 @@ public class MG_BaseActivity extends Activity {
 
 	@Override
 	public boolean onKeyDown(int keyCode, KeyEvent event) {
-		switch (keyCode) {
-		case KeyEvent.KEYCODE_BACK:
+		if (keyCode == KeyEvent.KEYCODE_BACK) {
 			if (!isBack) {
 				isBack = true;
 				showInfo(R.string.double_back_exit);
@@ -137,9 +136,10 @@ public class MG_BaseActivity extends Activity {
 			} else {
 				MG_Exit.getInstance().exit();
 			}
-			break;
+			return true;
+		}else {
+			return super.onKeyDown(keyCode, event);
 		}
-		return super.onKeyDown(keyCode, event);
 	}
 
 	public boolean isFirstIn() {

@@ -4,9 +4,31 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.markupartist.android.widget.ActionBar
+    <RelativeLayout
         android:id="@id/actionbar"
-        style="@style/ActionBar" />
+        style="@style/ActionBar" >
+
+        <ImageButton
+            android:id="@id/home_top_menudraw"
+            style="@style/ActionBarHomeItem"
+            android:background="@drawable/ic_menu_sort_by_size"
+            android:contentDescription="@string/descr_image" />
+
+        <TextView
+            android:id="@id/home_top_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/home_top_menudraw"
+            android:layout_centerVertical="true"
+            android:ellipsize="marquee"
+            android:lines="1"
+            android:marqueeRepeatLimit="marquee_forever"
+            android:paddingLeft="10dip"
+            android:paddingRight="10dip"
+            android:textColor="@color/actionbar_title"
+            android:textSize="16sp"
+            android:textStyle="bold" />
+    </RelativeLayout>
 
     <ListView
         android:id="@id/listview"
