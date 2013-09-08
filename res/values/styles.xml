@@ -2,19 +2,26 @@
 
     <!--
         Base application theme, dependent on API level. This theme is replaced
-        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
+        by AppBaseTheme from res/values-vXX/styles.xml on newer devices.
     -->
     <style name="AppBaseTheme" parent="android:Theme.Light">
         <!--
             Theme customizations available in newer API levels can go in
             res/values-vXX/styles.xml, while customizations related to
-            backward-compatibility can go here.
+            backward-compatibility can go here.
         -->
     </style>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
         <!-- All customizations that are NOT specific to a particular API-level can go here. -->
+    </style>
+
+    <style name="Transparent">
+        <item name="android:windowBackground">@android:color/transparent</item>
+        <item name="android:windowNoTitle">true</item>
+        <item name="android:windowIsTranslucent">true</item>
+        <item name="android:windowAnimationStyle">@android:style/Animation.Translucent</item>
     </style>
 
     <style name="StyledIndicators" parent="@android:style/Theme.Light">
@@ -56,8 +63,6 @@
         <item name="android:textColor">#FF555555</item>
         <item name="android:textSize">16sp</item>
         <item name="android:divider">@drawable/custom_tab_indicator_divider</item>
-        <item name="android:dividerPadding">10dp</item>
-        <item name="android:showDividers">middle</item>
         <item name="android:paddingLeft">8dp</item>
         <item name="android:paddingRight">8dp</item>
         <item name="android:fadingEdge">horizontal</item>
@@ -82,10 +87,32 @@
         <item name="android:layout_marginLeft">1.5dip</item>
         <item name="android:layout_marginRight">1.5dip</item>
     </style>
-    
-    <style  name="mj_banner">
+
+    <style name="mj_banner">
         <item name="android:layout_width">match_parent</item>
         <item name="android:layout_height">150dp</item>
+    </style>
+
+    <style name="MenuDrawer" />
+
+    <style name="MenuDrawer.Widget" />
+
+    <style name="MenuDrawer.Widget.Title">
+        <item name="android:background">@drawable/md__list_selector_holo_dark</item>
+        <item name="android:textAppearance">?android:attr/textAppearance</item>
+        <item name="android:textColor">?android:attr/textColorPrimaryInverse</item>
+        <item name="android:textSize">18sp</item>
+        <item name="android:paddingLeft">16dp</item>
+        <item name="android:paddingRight">32dp</item>
+        <item name="android:paddingTop">8dp</item>
+        <item name="android:paddingBottom">8dp</item>
+        <item name="android:drawablePadding">16dp</item>
+        <item name="android:gravity">center_vertical</item>
+    </style>
+
+    <style name="MenuDrawerStyle" parent="Widget.MenuDrawer">
+        <item name="mdActiveIndicator">@drawable/menu_arrow</item>
+        <item name="mdMenuSize">250dp</item>
     </style>
 
 </resources>

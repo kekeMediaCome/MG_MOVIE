@@ -12,9 +12,9 @@ import com.mg_movie.MG_Exit;
 import com.mg_movie.R;
 import com.mg_movie.adapter.MG_MediaAdapter;
 import com.mg_movie.imageloader.AbsListViewBaseActivity;
-import com.mg_movie.parser.Parser_v_qq_com;
 import com.mg_movie.player.JieLiveVideoPlayer;
 import com.mg_movie.type.Type_v_qq_com;
+import com.mg_movie.utils.DBUtils;
 import com.yixia.vparser.VParser;
 import com.yixia.vparser.model.Video;
 
@@ -34,6 +34,7 @@ public class MG_MOVIE extends AbsListViewBaseActivity {
 	MG_MediaAdapter adapter;
 	VParser vParser;
 	public ArrayList<String> pages;
+	DBUtils dbUtils;
 	public List<Type_v_qq_com> list_main = new ArrayList<Type_v_qq_com>();
 	public int index = 0;
 	public int count = 0;
@@ -42,10 +43,14 @@ public class MG_MOVIE extends AbsListViewBaseActivity {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.mg__movie);
 		instance = this;
-		writeFirstParm();
 		MG_Exit.getInstance().addActivity(this);
-		pages = getIntent().getStringArrayListExtra("pages");
-		count = pages.size();
+		dbUtils = new DBUtils(this);
+		int temp_count = dbUtils.getMovieCount();
+		if ((temp_count % 100) == 0) {
+			count = temp_count / 100;
+		}else {
+			count = temp_count / 100 + 1;
+		}
 		movieRefresh = (PullToRefreshGridView)findViewById(R.id.pull_refresh_grid);
 		movieRefresh.setMode(Mode.PULL_FROM_END);
 		listView = movieRefresh.getRefreshableView();
@@ -93,7 +98,7 @@ public class MG_MOVIE extends AbsListViewBaseActivity {
 		@Override
 		protected Void doInBackground(Void... paramArrayOfVoid) {
 			try {
-				lists = new Parser_v_qq_com().ParseVideo(pages.get(index));
+				lists = dbUtils.getRoundMovies(index*100, (index+1)*100);
 				for (Type_v_qq_com list : lists) {
 					list_main.add(list);
 				}

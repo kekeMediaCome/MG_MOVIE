@@ -13,12 +13,12 @@ public class Server extends Activity{
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		File dbFile = new File("/mnt/sdcard/zs.sqlite");
-		if (dbFile.exists()) {
-			dbFile.delete();
-		}
-//		severTencentMovie = new SeverTencentMovie(this);
+//		File dbFile = new File("/mnt/sdcard/zs.sqlite");
+//		if (dbFile.exists()) {
+//			dbFile.delete();
+//		}
+		severTencentMovie = new SeverTencentMovie(this);
 //		server56Movie = new Server56Movie(this);
-		serverTencentTV = new ServerTencentTV(this);
+//		serverTencentTV = new ServerTencentTV(this);
 	}
 }

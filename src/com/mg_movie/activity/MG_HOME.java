@@ -8,6 +8,12 @@ import java.util.concurrent.TimeUnit;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import net.simonvt.menudrawer.Position;
+import net.youmi.android.AdManager;
+import net.youmi.android.offers.OffersAdSize;
+import net.youmi.android.offers.OffersBanner;
+import net.youmi.android.offers.OffersManager;
+import net.youmi.android.smart.SmartBannerManager;
+import net.youmi.android.spot.SpotManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
@@ -24,6 +30,7 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
+import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
 
@@ -34,8 +41,9 @@ import com.mg_movie.adapter.MG__Home_MenuDraw_Adapter;
 import com.mg_movie.parser.Parse_home_content;
 import com.mg_movie.type.Type_home_content;
 
-public class MG_HOME extends MG_BaseActivity implements OnClickListener{
+public class MG_HOME extends MG_BaseActivity implements OnClickListener {
 
+	public MG_HOME instance;
 	private ViewPager viewPager; // android-support-v4中的滑动组件
 	private List<ImageView> imageViews; // 滑动的图片集合
 
@@ -55,6 +63,10 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener{
 	public LayoutInflater inflater;
 	private MenuDrawer mMenuDrawer;
 	private MG__Home_MenuDraw_Adapter menuAdapter;
+	/**
+	 * 积分 Mini Banner
+	 */
+	OffersBanner mBanner;
 	// 切换当前显示的图片
 	@SuppressLint("HandlerLeak")
 	private Handler handler = new Handler() {
@@ -67,17 +79,28 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener{
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		MG_Exit.getInstance().addActivity(this);
-		//设置右侧的menu
-		mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.Type.BEHIND, Position.LEFT, MenuDrawer.MENU_DRAG_CONTENT);
+		instance = this;
+		writeFirstParm();
+		// 设置右侧的menu
+		mMenuDrawer = MenuDrawer.attach(this, MenuDrawer.Type.BEHIND,
+				Position.LEFT, MenuDrawer.MENU_DRAG_CONTENT);
 		mMenuDrawer.setMenuView(R.layout.mg_home_menudraw);
 		mMenuDrawer.setContentView(R.layout.mg_home);
+		// 初始化接口，应用启动的时候调用
+		// 参数：appId, appSecret, 调试模式
+		AdManager.getInstance(this).init("5e3ae60c9a9aa945",
+				"3cbd8f0c54c2dc5b", false);
+		// 如果使用积分广告，请务必调用积分广告的初始化接口:
+		OffersManager.getInstance(this).onAppLaunch();
+		SmartBannerManager.init(this);
+
 		findViewById(R.id.home_top_menudraw).setOnClickListener(this);
-		TextView home_top_name = (TextView)findViewById(R.id.home_top_name);
+		TextView home_top_name = (TextView) findViewById(R.id.home_top_name);
 		home_top_name.setText("Home");
 		inflater = LayoutInflater.from(this);
 		listViewHeader = inflater.inflate(R.layout.mg_banner, null);
-		imageResId = new int[] { R.drawable.dot0, R.drawable.dot1, R.drawable.dot2,
-				R.drawable.dot3, R.drawable.dot4 };
+		imageResId = new int[] { R.drawable.dot0, R.drawable.dot1,
+				R.drawable.dot2, R.drawable.dot3, R.drawable.dot4 };
 		titles = new String[imageResId.length];
 		titles[0] = "巩俐不低俗，我就不能低俗";
 		titles[1] = "扑树又回来啦！再唱经典老歌引万人大合唱";
@@ -85,7 +108,6 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener{
 		titles[3] = "乐视网TV版大派送";
 		titles[4] = "热血屌丝的反杀";
 
-		
 		imageViews = new ArrayList<ImageView>();
 
 		// 初始化图片资源
@@ -110,14 +132,18 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener{
 		viewPager.setAdapter(new MyAdapter());// 设置填充ViewPager页面的适配器
 		// 设置一个监听器，当ViewPager中的页面改变时调用
 		viewPager.setOnPageChangeListener(new MyPageChangeListener());
-		listView = (ListView)findViewById(R.id.listview);
+		listView = (ListView) findViewById(R.id.listview);
 		listView.addHeaderView(listViewHeader, null, true);
 		lists = new Parse_home_content().getHomeContent();
 		adapter = new MG_HomeAdapter(inflater, lists);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new ListItemOnClik());
-		
-	
+		// (可选)使用积分Banner-一个新的积分墙入口点，随时随地让用户关注新的积分广告
+		mBanner = new OffersBanner(this, OffersAdSize.SIZE_MATCH_SCREENx60);
+		RelativeLayout layoutOffersBanner = (RelativeLayout) findViewById(R.id.offersBannerLayout);
+		layoutOffersBanner.addView(mBanner);
+		// 插屏广告预加载
+		SpotManager.getInstance(this).loadSpotAds();
 	}
 
 	@Override
@@ -154,18 +180,24 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener{
 	/**
 	 * @author jie
 	 */
-	private class ListItemOnClik implements OnItemClickListener{
+	private class ListItemOnClik implements OnItemClickListener {
 		@Override
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
-			Type_home_content type = lists.get(position);
-			if (type.getCls_packet() !=  null) {
-				Intent intent = new Intent();
-				intent.setClassName(MG_HOME.this, type.getCls_packet());
+			if (position == 1) {
+				OffersManager.getInstance(instance).showOffersWall();
+			} else {
+				Type_home_content type = lists.get(position-1);
+				if (type.getCls_packet() != null) {
+					Intent intent = new Intent();
+					intent.setClassName(MG_HOME.this, type.getCls_packet());
+					startActivity(intent);
+				}
 			}
 		}
-		
+
 	}
+
 	/**
 	 * 当ViewPager中页面的状态发生改变时调用
 	 * 
@@ -247,12 +279,9 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener{
 		case R.id.home_top_menudraw:
 			if (mMenuDrawer.isMenuVisible()) {
 				mMenuDrawer.closeMenu();
-			}else {
+			} else {
 				mMenuDrawer.openMenu();
 			}
-			break;
-
-		default:
 			break;
 		}
 	}

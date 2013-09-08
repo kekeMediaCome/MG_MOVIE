@@ -106,7 +106,26 @@ public class DBUtils {
 	public List<Type_v_qq_com> getAllMovies(){
 		List<Type_v_qq_com> videos = new ArrayList<Type_v_qq_com>();
 		SQLiteDatabase db = mDBHelper.getReadableDatabase();
-		Cursor cursor = db.rawQuery("SELECT count(*) FROM movie", null);
+		Cursor cursor = db.rawQuery("SELECT * FROM movie", null);
+		while (cursor.moveToNext()) {
+			Type_v_qq_com video = new Type_v_qq_com();
+			video.setVideo_id(cursor.getInt(0));
+			video.setVideo_name(cursor.getString(1));
+			video.setVideo_urlstite(cursor.getString(2));
+			video.setVideo_url(cursor.getString(3));
+			video.setVideo_img(cursor.getString(4));
+			video.setVideo_source(cursor.getString(5));
+			video.setVideo_mark(cursor.getString(6));
+			videos.add(video);
+		}
+		return videos;
+	}
+	
+	public List<Type_v_qq_com> getRoundMovies(int start, int end){
+		List<Type_v_qq_com> videos = new ArrayList<Type_v_qq_com>();
+		SQLiteDatabase db = mDBHelper.getReadableDatabase();
+		String[] pars = {String.valueOf(start), String.valueOf(end)}; 
+		Cursor cursor = db.rawQuery("SELECT * FROM movie where video_id >= ? and video_id < ?", pars);
 		while (cursor.moveToNext()) {
 			Type_v_qq_com video = new Type_v_qq_com();
 			video.setVideo_id(cursor.getInt(0));

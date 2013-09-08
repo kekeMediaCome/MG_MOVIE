@@ -3,6 +3,7 @@ package com.mg_movie.activity;
 import com.mg_movie.AppLog;
 import com.mg_movie.MG_Exit;
 import com.mg_movie.R;
+import com.mg_movie.firstloader.MG_FirstLoad;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -20,13 +21,20 @@ public class MG_Splash extends MG_BaseActivity implements AnimationListener {
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
-		setContentView(R.layout.mg_splash);
-		instance = this;
-		AppLog.enableLogging(true);
 		MG_Exit.getInstance().addActivity(this);
-		loadAnimation();
-		SplashLogo = (ImageView) findViewById(R.id.splash_img);
-		SplashLogo.startAnimation(alphaAnimation);
+		if (!isFirstIn()) {
+			setContentView(R.layout.mg_splash);
+			instance = this;
+			AppLog.enableLogging(true);
+			loadAnimation();
+			SplashLogo = (ImageView) findViewById(R.id.splash_img);
+			SplashLogo.startAnimation(alphaAnimation);
+		}else {
+			Intent intent = new Intent();
+			intent.setClass(MG_Splash.this, MG_FirstLoad.class);
+			startActivity(intent);
+			finish();
+		}
 	}
 
 	/**
