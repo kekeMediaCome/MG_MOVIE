@@ -3,16 +3,12 @@ package com.mg_movie.activity;
 import java.util.Timer;
 import java.util.TimerTask;
 
-import com.markupartist.android.widget.ActionBar;
-import com.markupartist.android.widget.ActionBar.Action;
-import com.markupartist.android.widget.ActionBar.IntentAction;
 import com.mg_movie.KSetting;
 import com.mg_movie.MG_Exit;
 import com.mg_movie.R;
 import com.nostra13.universalimageloader.core.ImageLoader;
 
 import android.app.Activity;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
@@ -25,7 +21,6 @@ public class MG_BaseActivity extends Activity {
 
 	public static Toast infoToast = null;
 	public ConnectivityManager con = null;
-	public ActionBar actionBar;
 	public boolean isBack = false;
 	Timer BackTimer = null;
 	protected ImageLoader imageLoader = ImageLoader.getInstance();
@@ -34,34 +29,6 @@ public class MG_BaseActivity extends Activity {
 	public boolean onCreateOptionsMenu(Menu menu) {
 		getMenuInflater().inflate(R.menu.main_menu, menu);
 		return true;
-	}
-	/**
-	 * 程序顶部的控件
-	 * @param layout_title
-	 */
-	public void initActionBar(int layout_title) {
-		actionBar = (ActionBar) findViewById(R.id.actionbar);
-		actionBar.setTitle(getResources().getString(layout_title));
-	}
-
-	/**
-	 * 程序顶部的控件的组件
-	 * @param cls
-	 */
-	public void initActionBarCompont(Class<?> cls) {
-		Action shareAction = new IntentAction(this, createShareIntent(),
-				R.drawable.ic_title_share_default);
-		actionBar.addAction(shareAction);
-		Action otherAction = new IntentAction(this, new Intent(this,
-				cls), R.drawable.ic_title_export_default);
-		actionBar.addAction(otherAction);
-	}
-
-	private Intent createShareIntent() {
-		final Intent intent = new Intent(Intent.ACTION_SEND);
-		intent.setType("text/plain");
-		intent.putExtra(Intent.EXTRA_TEXT, "Shared from the ActionBar widget.");
-		return Intent.createChooser(intent, "Share");
 	}
 
 	@Override

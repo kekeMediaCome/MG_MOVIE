@@ -1,5 +1,6 @@
 package com.mg_movie.adapter;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import com.mg_movie.R;
@@ -36,6 +37,24 @@ public class MG_MediaAdapter extends BaseAdapter {
 	public void setListItem(List<Type_v_qq_com> list) {
 		listItems = list;
 		notifyDataSetChanged();
+	}
+	
+	public void addListItem(List<Type_v_qq_com> list){
+		if (listItems == null) {
+			listItems = list;
+		}else {
+			for (Type_v_qq_com type_v_qq_com : list) {
+				listItems.add(type_v_qq_com);
+			}
+		}
+		notifyDataSetChanged();
+	}
+	
+	public void addMovieItem(Type_v_qq_com movie){
+		if (listItems == null) {
+			listItems = new ArrayList<Type_v_qq_com>();
+		}
+		listItems.add(movie);
 	}
 
 	@Override

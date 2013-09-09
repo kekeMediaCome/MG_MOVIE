@@ -4,9 +4,11 @@
     android:layout_height="match_parent"
     android:orientation="vertical" >
 
-    <com.markupartist.android.widget.ActionBar
-        android:id="@+id/actionbar"
-        style="@style/ActionBar" />
+    <include
+        android:id="@id/actionbar"
+        style="@style/ActionBar"
+        layout="@layout/mg_top_layout" >
+    </include>
 
     <ListView
         android:id="@+id/radio_channel_listview"

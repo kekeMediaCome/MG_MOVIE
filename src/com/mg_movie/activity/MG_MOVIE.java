@@ -22,12 +22,15 @@ import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
 
-public class MG_MOVIE extends AbsListViewBaseActivity {
+public class MG_MOVIE extends AbsListViewBaseActivity implements
+		OnClickListener {
 
 	private PullToRefreshGridView movieRefresh;
 	public MG_MOVIE instance;
@@ -38,6 +41,7 @@ public class MG_MOVIE extends AbsListViewBaseActivity {
 	public List<Type_v_qq_com> list_main = new ArrayList<Type_v_qq_com>();
 	public int index = 0;
 	public int count = 0;
+
 	@Override
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
@@ -48,10 +52,13 @@ public class MG_MOVIE extends AbsListViewBaseActivity {
 		int temp_count = dbUtils.getMovieCount();
 		if ((temp_count % 100) == 0) {
 			count = temp_count / 100;
-		}else {
+		} else {
 			count = temp_count / 100 + 1;
 		}
-		movieRefresh = (PullToRefreshGridView)findViewById(R.id.pull_refresh_grid);
+		findViewById(R.id.home_top_menudraw).setOnClickListener(this);
+		TextView home_top_name = (TextView) findViewById(R.id.home_top_name);
+		home_top_name.setText("Movie");
+		movieRefresh = (PullToRefreshGridView) findViewById(R.id.pull_refresh_grid);
 		movieRefresh.setMode(Mode.PULL_FROM_END);
 		listView = movieRefresh.getRefreshableView();
 		movieRefresh.setOnRefreshListener(new OnRefreshListener<GridView>() {
@@ -60,9 +67,10 @@ public class MG_MOVIE extends AbsListViewBaseActivity {
 				if (index < count) {
 					index++;
 					new InitData().execute();
-				}else {
+				} else {
 					movieRefresh.onRefreshComplete();
-					Toast.makeText(instance, R.string.refrash_all_finish, Toast.LENGTH_SHORT).show();
+					Toast.makeText(instance, R.string.refrash_all_finish,
+							Toast.LENGTH_SHORT).show();
 				}
 			}
 		});
@@ -72,17 +80,18 @@ public class MG_MOVIE extends AbsListViewBaseActivity {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				String urlString  = list_main.get(position).getVideo_url();
+				String urlString = list_main.get(position).getVideo_url();
 				AppLog.e(urlString);
-				Video video  = vParser.parse(urlString);
+				Video video = vParser.parse(urlString);
 				if (video != null) {
 					AppLog.e(video.videoUri);
 					Intent intent = new Intent();
 					intent.putExtra("path", video.videoUri);
-					intent.putExtra("title", list_main.get(position).getVideo_name());
+					intent.putExtra("title", list_main.get(position)
+							.getVideo_name());
 					intent.setClass(MG_MOVIE.this, JieLiveVideoPlayer.class);
 					startActivity(intent);
-				}else {
+				} else {
 					AppLog.e("null");
 				}
 			}
@@ -90,17 +99,21 @@ public class MG_MOVIE extends AbsListViewBaseActivity {
 		new InitData().execute();
 		vParser = new VParser(this);
 	}
-	
+
 	class InitData extends AsyncTask<Void, Void, Void> {
 		InitData() {
 		}
-		List<Type_v_qq_com> lists = null;
+
 		@Override
 		protected Void doInBackground(Void... paramArrayOfVoid) {
 			try {
-				lists = dbUtils.getRoundMovies(index*100, (index+1)*100);
-				for (Type_v_qq_com list : lists) {
-					list_main.add(list);
+				if (index == 0) {
+					list_main = dbUtils.getAllMovies();
+				}
+				int temp_pre = index * 100;
+				int temp_end = (index + 1) * 100;
+				for (int i = temp_pre; i < temp_end; i++) {
+					adapter.addMovieItem(list_main.get(i));
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
@@ -115,9 +128,18 @@ public class MG_MOVIE extends AbsListViewBaseActivity {
 
 		@Override
 		protected void onPostExecute(Void result) {
-			super.onPostExecute(result);
-			adapter.setListItem(list_main);
+			adapter.notifyDataSetChanged();
 			movieRefresh.onRefreshComplete();
+			super.onPostExecute(result);
+		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.home_top_menudraw:
+			finish();
+			break;
 		}
 	}
 }

@@ -3,9 +3,6 @@ package com.mg_movie.activity;
 import java.util.ArrayList;
 import java.util.List;
 
-import com.markupartist.android.widget.ActionBar;
-import com.markupartist.android.widget.ActionBar.AbstractAction;
-import com.markupartist.android.widget.ActionBar.IntentAction;
 import com.mg_movie.R;
 import com.mg_movie.adapter.RadioListType;
 import com.mg_movie.adapter.RadioMenuAdapter;
@@ -18,18 +15,19 @@ import net.simonvt.menudrawer.Position;
 
 import android.app.Activity;
 import android.app.ProgressDialog;
-import android.content.Context;
 import android.content.Intent;
 import android.net.ConnectivityManager;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
+import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.ListView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 public class MG_NetRadio extends Activity implements
-		RadioMenuAdapter.MenuListener {
+		RadioMenuAdapter.MenuListener, OnClickListener {
 
 	private static final String radioURL = "http://rushplayer.com/wapstream.aspx?v=1.54&t=1&g=8&app=1000";
 	private static final String STATE_ACTIVE_POSITION = "org.stagex.danmaku.activity.RadioActivity.activePosition";
@@ -59,6 +57,10 @@ public class MG_NetRadio extends Activity implements
 		mMenuDrawer.setContentView(R.layout.radio_channel_content);
 		mMenuDrawer.setAllowIndicatorAnimation(true);
 
+		findViewById(R.id.home_top_menudraw).setOnClickListener(this);
+		TextView home_top_name = (TextView) findViewById(R.id.home_top_name);
+		home_top_name.setText("Radio");
+
 		parentRadioListView = new ListView(this);
 		parentRadioListView.setCacheColorHint(00000000);
 		mAdapter = new RadioMenuAdapter(this);
@@ -79,40 +81,6 @@ public class MG_NetRadio extends Activity implements
 		progressDialog = new ProgressDialog(MG_NetRadio.this);
 		progressDialog.setMessage("解析中...");
 		// progressDialog.setCancelable(false);
-
-		ActionBar actionBar = (ActionBar) findViewById(R.id.actionbar);
-		actionBar.setHomeAction(new IntentAction(this, this.
-				createIntent(this), R.drawable.ic_title_home_default));
-		actionBar.setDisplayHomeAsUpEnabled(true);
-		actionBar.addAction(new IntentAction(this, createShareIntent(),
-				R.drawable.ic_title_share_default));
-		actionBar.addAction(new ExampleAction());
-		actionBar.setTitle("电台");
-	}
-	
-	 public Intent createIntent(Context context) {
-	        Intent i = new Intent(context, MG_HOME.class);
-		i.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-	        return i;
-	    }
-	private Intent createShareIntent() {
-		final Intent intent = new Intent(Intent.ACTION_SEND);
-		intent.setType("text/plain");
-		intent.putExtra(Intent.EXTRA_TEXT, "Shared from the ActionBar widget.");
-		return Intent.createChooser(intent, "Share");
-	}
-
-	private class ExampleAction extends AbstractAction {
-
-		public ExampleAction() {
-			super(R.drawable.ic_title_export_default);
-		}
-
-		@Override
-		public void performAction(View view) {
-			Toast.makeText(MG_NetRadio.this, "Example action",
-					Toast.LENGTH_SHORT).show();
-		}
 
 	}
 
@@ -283,5 +251,15 @@ public class MG_NetRadio extends Activity implements
 			showInfo("请检查网络环境，稍后再试");
 			finish();
 		}
+	}
+
+	@Override
+	public void onClick(View v) {
+		switch (v.getId()) {
+		case R.id.home_top_menudraw:
+			finish();
+			break;
+		}
+
 	}
 }

@@ -5,6 +5,12 @@
     android:background="#ff2f2f2f"
     android:orientation="vertical" >
 
+    <include
+        android:id="@id/actionbar"
+        style="@style/ActionBar"
+        layout="@layout/mg_top_layout" >
+    </include>
+
     <com.handmark.pulltorefresh.library.PullToRefreshGridView
         xmlns:ptr="http://schemas.android.com/apk/res-auto"
         android:id="@id/pull_refresh_grid"
@@ -16,7 +22,6 @@
         android:numColumns="auto_fit"
         android:stretchMode="columnWidth"
         android:verticalSpacing="5dp"
-        ptr:ptrDrawable="@drawable/ic_refresh"
-        />
+        ptr:ptrDrawable="@drawable/ic_refresh" />
 
 </LinearLayout>

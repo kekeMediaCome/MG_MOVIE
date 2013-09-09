@@ -1,5 +1,10 @@
 package com.mg_movie.activity;
 
+import net.youmi.android.AdManager;
+import net.youmi.android.offers.OffersManager;
+import net.youmi.android.smart.SmartBannerManager;
+import net.youmi.android.spot.SpotManager;
+
 import com.mg_movie.AppLog;
 import com.mg_movie.MG_Exit;
 import com.mg_movie.R;
@@ -29,11 +34,20 @@ public class MG_Splash extends MG_BaseActivity implements AnimationListener {
 			loadAnimation();
 			SplashLogo = (ImageView) findViewById(R.id.splash_img);
 			SplashLogo.startAnimation(alphaAnimation);
-		}else {
+			// 初始化接口，应用启动的时候调用
+			// 参数：appId, appSecret, 调试模式
+			AdManager.getInstance(this).init("5e3ae60c9a9aa945",
+					"3cbd8f0c54c2dc5b", false);
+			// 如果使用积分广告，请务必调用积分广告的初始化接口:
+			OffersManager.getInstance(instance).onAppLaunch();
+			SmartBannerManager.init(instance);
+			// 插屏广告预加载
+			SpotManager.getInstance(instance).loadSpotAds();
+		} else {
 			Intent intent = new Intent();
 			intent.setClass(MG_Splash.this, MG_FirstLoad.class);
 			startActivity(intent);
-			finish();
+			// finish();
 		}
 	}
 
@@ -47,10 +61,10 @@ public class MG_Splash extends MG_BaseActivity implements AnimationListener {
 
 	@Override
 	public void onAnimationEnd(Animation animation) {
-		 Intent intent = new Intent();
-		 intent.setClass(MG_Splash.this, MG_HOME.class);
-		 startActivity(intent);
-		 finish();
+		Intent intent = new Intent();
+		intent.setClass(MG_Splash.this, MG_HOME.class);
+		startActivity(intent);
+		finish();
 	}
 
 	@Override

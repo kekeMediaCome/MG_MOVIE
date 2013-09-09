@@ -8,15 +8,13 @@ import java.util.concurrent.TimeUnit;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import net.simonvt.menudrawer.Position;
-import net.youmi.android.AdManager;
 import net.youmi.android.offers.OffersAdSize;
 import net.youmi.android.offers.OffersBanner;
 import net.youmi.android.offers.OffersManager;
-import net.youmi.android.smart.SmartBannerManager;
-import net.youmi.android.spot.SpotManager;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Handler;
 import android.os.Parcelable;
@@ -34,6 +32,7 @@ import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
 
+import com.mg_movie.AppLog;
 import com.mg_movie.MG_Exit;
 import com.mg_movie.R;
 import com.mg_movie.adapter.MG_HomeAdapter;
@@ -86,14 +85,10 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener {
 				Position.LEFT, MenuDrawer.MENU_DRAG_CONTENT);
 		mMenuDrawer.setMenuView(R.layout.mg_home_menudraw);
 		mMenuDrawer.setContentView(R.layout.mg_home);
-		// 初始化接口，应用启动的时候调用
-		// 参数：appId, appSecret, 调试模式
-		AdManager.getInstance(this).init("5e3ae60c9a9aa945",
-				"3cbd8f0c54c2dc5b", false);
-		// 如果使用积分广告，请务必调用积分广告的初始化接口:
-		OffersManager.getInstance(this).onAppLaunch();
-		SmartBannerManager.init(this);
-
+		// (可选)使用积分Banner-一个新的积分墙入口点，随时随地让用户关注新的积分广告
+		mBanner = new OffersBanner(instance, OffersAdSize.SIZE_MATCH_SCREENx60);
+		RelativeLayout layoutOffersBanner = (RelativeLayout) findViewById(R.id.offersBannerLayout);
+		layoutOffersBanner.addView(mBanner);
 		findViewById(R.id.home_top_menudraw).setOnClickListener(this);
 		TextView home_top_name = (TextView) findViewById(R.id.home_top_name);
 		home_top_name.setText("Home");
@@ -138,12 +133,7 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener {
 		adapter = new MG_HomeAdapter(inflater, lists);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new ListItemOnClik());
-		// (可选)使用积分Banner-一个新的积分墙入口点，随时随地让用户关注新的积分广告
-		mBanner = new OffersBanner(this, OffersAdSize.SIZE_MATCH_SCREENx60);
-		RelativeLayout layoutOffersBanner = (RelativeLayout) findViewById(R.id.offersBannerLayout);
-		layoutOffersBanner.addView(mBanner);
-		// 插屏广告预加载
-		SpotManager.getInstance(this).loadSpotAds();
+		
 	}
 
 	@Override
@@ -162,10 +152,24 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener {
 		super.onStop();
 	}
 
+	class Adload extends AsyncTask<Void, Void, Void>{
+		@Override
+		protected Void doInBackground(Void... params) {
+			
+			return null;
+		}
+
+		@Override
+		protected void onPostExecute(Void result) {
+			
+			super.onPostExecute(result);
+		}
+		
+	}
 	/**
 	 * 换行切换任务
 	 * 
-	 * @author Administrator
+	 * @author jie
 	 * 
 	 */
 	private class ScrollTask implements Runnable {
@@ -187,7 +191,8 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener {
 			if (position == 1) {
 				OffersManager.getInstance(instance).showOffersWall();
 			} else {
-				Type_home_content type = lists.get(position-1);
+				Type_home_content type = lists.get(position - 1);
+				AppLog.e(type.getCls_packet());
 				if (type.getCls_packet() != null) {
 					Intent intent = new Intent();
 					intent.setClassName(MG_HOME.this, type.getCls_packet());

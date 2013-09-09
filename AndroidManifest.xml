@@ -48,6 +48,10 @@
             android:name="com.mg_movie.server.Server"
             android:label="@string/app_name" >
         </activity>
+         <activity
+            android:name="com.mg_movie.activity.MG_LIVE"
+            android:label="@string/app_name" >
+        </activity>
         <activity
             android:name="com.mg_movie.activity.MG_MOVIE"
             android:label="@string/app_name" >
