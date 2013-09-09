@@ -1,19 +1,13 @@
 package com.mg_movie.firstloader;
 
-import java.util.ArrayList;
-
-import com.mg_movie.KSetting;
 import com.mg_movie.MG_Exit;
 import com.mg_movie.R;
 import com.mg_movie.activity.MG_HOME;
-import com.mg_movie.activity.MG_MOVIE;
-import com.mg_movie.parser.Parser_v_qq_com;
 import com.viewpagerindicator.CirclePageIndicator;
 import com.viewpagerindicator.PageIndicator;
 
 import android.app.ProgressDialog;
 import android.content.Intent;
-import android.os.AsyncTask;
 import android.os.Bundle;
 import android.support.v4.app.FragmentActivity;
 import android.support.v4.view.ViewPager;
@@ -24,7 +18,6 @@ public class MG_FirstLoad extends FragmentActivity {
 	private MG_FirstLoadAdapter mAdapter;
 	private int endPager = 3;
 	private boolean isFinish = false;
-	private ArrayList<String> listPages = null;
 	private ProgressDialog progressDialog;
 
 	@Override
@@ -46,7 +39,6 @@ public class MG_FirstLoad extends FragmentActivity {
 				.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 					@Override
 					public void onPageSelected(int position) {
-
 					}
 
 					@Override

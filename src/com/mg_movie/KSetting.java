@@ -13,4 +13,8 @@ public class KSetting {
 	public static String tv_q_com_url = "http://v.qq.com/list/2_-1_-1_-1_1_0_0_20_-1_-1_0.html";
 	public static String tv_q_com_url_head = "http://v.qq.com/list/2_-1_-1_-1_1_0_";
 	public static String tv_q_com_url_end = "_20_0_-1_0.html";
+	
+	public static String cartoon_pptv_com_url = "http://list.pptv.com/sort_list/3------6---1.html";
+	public static String cartoon_pptv_com_url_head = "http://list.pptv.com/sort_list/3------6---";
+	public static String cartoon_pptv_com_url_end = ".html";
 }
