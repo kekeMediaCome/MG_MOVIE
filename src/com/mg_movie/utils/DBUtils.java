@@ -147,7 +147,7 @@ public class DBUtils {
 	public List<Type_tv> getAllTVs(){
 		List<Type_tv> tvs = new ArrayList<Type_tv>();
 		SQLiteDatabase db = mDBHelper.getReadableDatabase();
-		Cursor cursor = db.rawQuery("SELECT count(*) FROM tv", null);
+		Cursor cursor = db.rawQuery("SELECT * FROM tv", null);
 		while (cursor.moveToNext()) {
 			Type_tv tv = new Type_tv();
 			tv.setTv_id(cursor.getInt(0));

@@ -56,6 +56,10 @@
             android:name="com.mg_movie.activity.MG_MOVIE"
             android:label="@string/app_name" >
         </activity>
+         <activity
+            android:name="com.mg_movie.activity.MG_TV"
+            android:label="@string/app_name" >
+        </activity>
         <activity
             android:name="com.mg_movie.activity.MG_NetRadio"
             android:label="@string/app_name" >

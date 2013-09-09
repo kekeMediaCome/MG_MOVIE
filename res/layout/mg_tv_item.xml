@@ -1,0 +1,43 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent" >
+
+    <ImageView
+        android:id="@id/tv_item_logo"
+        android:layout_width="80dp"
+        android:layout_height="100dp"
+        android:layout_centerVertical="true"
+        android:background="@drawable/default_thumbnail"
+        android:scaleType="fitXY"
+        android:contentDescription="@string/descr_image" />
+
+    <TextView
+        android:id="@id/tv_item_title"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="5dp"
+        android:textColor="@color/white"
+        android:layout_marginLeft="5dp"
+        android:layout_toRightOf="@id/tv_item_logo" />
+
+    <TextView
+        android:id="@id/tv_item_mark_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_below="@id/tv_item_title"
+        android:layout_marginLeft="5dp"
+        android:layout_marginTop="2dp"
+        android:textColor="@color/white"
+        android:layout_toRightOf="@id/tv_item_logo" />
+
+    <ImageView
+        android:layout_width="40dp"
+        android:layout_height="30dp"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginRight="5dp"
+        android:background="@drawable/tv_item_play"
+        android:contentDescription="@string/descr_image" />
+
+</RelativeLayout>

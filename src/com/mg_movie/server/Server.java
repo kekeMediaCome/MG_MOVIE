@@ -17,8 +17,8 @@ public class Server extends Activity{
 //		if (dbFile.exists()) {
 //			dbFile.delete();
 //		}
-		severTencentMovie = new SeverTencentMovie(this);
+//		severTencentMovie = new SeverTencentMovie(this);
 //		server56Movie = new Server56Movie(this);
-//		serverTencentTV = new ServerTencentTV(this);
+		serverTencentTV = new ServerTencentTV(this);
 	}
 }

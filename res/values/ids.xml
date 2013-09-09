@@ -25,4 +25,7 @@
     <item type="id" name="home_menudraw_listview">false</item>
     <item type="id" name="home_top_menudraw">false</item>
     <item type="id" name="home_top_name">false</item>
+    <item type="id" name="tv_item_logo">false</item>
+    <item type="id" name="tv_item_title">false</item>
+    <item type="id" name="tv_item_mark_txt">false</item>
 </resources>
