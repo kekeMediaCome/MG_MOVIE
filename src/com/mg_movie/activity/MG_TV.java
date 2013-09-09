@@ -3,6 +3,7 @@ package com.mg_movie.activity;
 import java.util.ArrayList;
 import java.util.List;
 
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.view.View;
@@ -16,14 +17,15 @@ import com.handmark.pulltorefresh.library.PullToRefreshBase;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.Mode;
 import com.handmark.pulltorefresh.library.PullToRefreshBase.OnRefreshListener;
 import com.handmark.pulltorefresh.library.PullToRefreshListView;
-import com.mg_movie.AppLog;
 import com.mg_movie.MG_Exit;
 import com.mg_movie.R;
 import com.mg_movie.adapter.MG_TV_Adapter;
 import com.mg_movie.imageloader.AbsListViewBaseActivity;
+import com.mg_movie.player.JieLiveVideoPlayer;
 import com.mg_movie.type.Type_tv;
 import com.mg_movie.utils.DBUtils;
 import com.yixia.vparser.VParser;
+import com.yixia.vparser.model.Video;
 
 public class MG_TV extends AbsListViewBaseActivity implements OnClickListener {
 	public MG_TV instance;
@@ -53,7 +55,6 @@ public class MG_TV extends AbsListViewBaseActivity implements OnClickListener {
 				index++;
 				new InitData().execute();
 			}
-
 		});
 		listView = tvRefresh.getRefreshableView();
 		adapter = new MG_TV_Adapter(this, imageLoader);
@@ -62,7 +63,15 @@ public class MG_TV extends AbsListViewBaseActivity implements OnClickListener {
 			@Override
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
-				AppLog.e("position: " + position);
+				Type_tv tv = list_main.get(position - 1);
+				Video video  = vParser.parse(tv.getTv_url());
+				if (video != null) {
+					Intent intent = new Intent();
+					intent.putExtra("path", video.videoUri);
+					intent.putExtra("title", video.title);
+					intent.setClass(MG_TV.this, JieLiveVideoPlayer.class);
+					startActivity(intent);
+				}
 			}
 		});
 		new InitData().execute();
@@ -71,7 +80,6 @@ public class MG_TV extends AbsListViewBaseActivity implements OnClickListener {
 
 	class InitData extends AsyncTask<Void, Void, Void> {
 		InitData() {
-			
 		}
 
 		@Override
