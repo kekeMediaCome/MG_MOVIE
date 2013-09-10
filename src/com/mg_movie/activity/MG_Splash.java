@@ -2,7 +2,6 @@ package com.mg_movie.activity;
 
 import net.youmi.android.AdManager;
 import net.youmi.android.offers.OffersManager;
-import net.youmi.android.smart.SmartBannerManager;
 
 import com.mg_movie.AppLog;
 import com.mg_movie.MG_Exit;
@@ -47,7 +46,7 @@ public class MG_Splash extends MG_BaseActivity implements AnimationListener {
 						"3cbd8f0c54c2dc5b", false);
 				// 如果使用积分广告，请务必调用积分广告的初始化接口:
 				OffersManager.getInstance(instance).onAppLaunch();
-				SmartBannerManager.init(instance);
+//				SmartBannerManager.init(instance);
 				 // 插屏广告预加载
 				// SpotManager.getInstance(instance).loadSpotAds();
 			}

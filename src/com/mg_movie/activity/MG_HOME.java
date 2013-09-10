@@ -8,8 +8,6 @@ import java.util.concurrent.TimeUnit;
 
 import net.simonvt.menudrawer.MenuDrawer;
 import net.simonvt.menudrawer.Position;
-import net.youmi.android.offers.OffersAdSize;
-import net.youmi.android.offers.OffersBanner;
 import net.youmi.android.offers.OffersManager;
 
 import android.annotation.SuppressLint;
@@ -64,7 +62,7 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener {
 	/**
 	 * 积分 Mini Banner
 	 */
-	OffersBanner mBanner;
+//	OffersBanner mBanner;
 	// 切换当前显示的图片
 	@SuppressLint("HandlerLeak")
 	private Handler handler = new Handler() {
@@ -84,10 +82,10 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener {
 				Position.LEFT, MenuDrawer.MENU_DRAG_CONTENT);
 		mMenuDrawer.setMenuView(R.layout.mg_home_menudraw);
 		mMenuDrawer.setContentView(R.layout.mg_home);
-		// (可选)使用积分Banner-一个新的积分墙入口点，随时随地让用户关注新的积分广告
-		mBanner = new OffersBanner(instance, OffersAdSize.SIZE_MATCH_SCREENx60);
-		RelativeLayout layoutOffersBanner = (RelativeLayout) findViewById(R.id.offersBannerLayout);
-		layoutOffersBanner.addView(mBanner);
+//		// (可选)使用积分Banner-一个新的积分墙入口点，随时随地让用户关注新的积分广告
+//		mBanner = new OffersBanner(instance, OffersAdSize.SIZE_MATCH_SCREENx60);
+//		RelativeLayout layoutOffersBanner = (RelativeLayout) findViewById(R.id.offersBannerLayout);
+//		layoutOffersBanner.addView(mBanner);
 		findViewById(R.id.home_top_menudraw).setOnClickListener(this);
 		TextView home_top_name = (TextView) findViewById(R.id.home_top_name);
 		home_top_name.setText("Home");

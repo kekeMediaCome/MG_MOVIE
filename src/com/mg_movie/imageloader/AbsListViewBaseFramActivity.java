@@ -6,7 +6,6 @@ import android.view.MenuItem;
 import android.widget.AbsListView;
 
 import com.mg_movie.R;
-import com.mg_movie.activity.MG_BaseActivity;
 import com.mg_movie.activity.MG_BaseFrameActivity;
 import com.nostra13.universalimageloader.core.assist.PauseOnScrollListener;
 

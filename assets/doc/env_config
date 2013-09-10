@@ -8,3 +8,36 @@ Android-Universal-Image-Loader:		https://github.com/nostra13/Android-Universal-I
 Android-PullToRefresh：		https://github.com/chrisbanes/Android-PullToRefresh.git
 4.ViewPagerIndicator
 Android-ViewPagerIndicator：		https://github.com/JakeWharton/Android-ViewPagerIndicator.git
+
+
+"category": [   央视
+      "1"
+    ],
+
+"category": [   卫视
+      "2"
+    ],
+
+"category": [   地方
+      "3"
+    ],
+
+"category": [   体育
+      "4"
+    ],
+
+"category": [   自定义
+      "5"
+    ],
+
+"category": [   影视
+      "6"
+    ],
+
+"category": [   新闻
+      "7"
+    ],
+
+"category": [   少儿
+      "8"
+    ],

@@ -1,5 +1,6 @@
 package com.mg_movie.utils;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.List;
 
@@ -15,8 +16,9 @@ import com.mg_movie.type.Type_live_togic_1;
 import com.mg_movie.type.Type_tv;
 import com.mg_movie.type.Type_v_qq_com;
 
-public class DBUtils {
+public class DBUtils implements Serializable {
 
+	private static final long serialVersionUID = 1L;
 	private static DBHelper mDBHelper;
 
 	public DBUtils(Context paramContext) {
@@ -103,6 +105,7 @@ public class DBUtils {
 
 	/**
 	 * 插入一条togic的直播
+	 * 
 	 * @param live
 	 */
 	public void insertLive(Type_live_togic_1 live) {
@@ -170,11 +173,13 @@ public class DBUtils {
 		db.close();
 		return coutn;
 	}
+
 	/**
 	 * 获取togic所有的直播节目
+	 * 
 	 * @return
 	 */
-	public int getLiveTogicCount(){
+	public int getLiveTogicCount() {
 		SQLiteDatabase db = mDBHelper.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT count(*) FROM live_togic_1", null);
 		cursor.moveToNext();
@@ -282,12 +287,13 @@ public class DBUtils {
 		}
 		return cts;
 	}
-	
+
 	/**
 	 * 获取所有的togic的视频
+	 * 
 	 * @return
 	 */
-	public List<Type_live_togic_1> getAllLiveTogics(){
+	public List<Type_live_togic_1> getAllLiveTogics() {
 		List<Type_live_togic_1> lives = new ArrayList<Type_live_togic_1>();
 		SQLiteDatabase db = mDBHelper.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT * FROM live_togic_1", null);
@@ -297,27 +303,30 @@ public class DBUtils {
 			live.setCategory(cursor.getString(1));
 			live.setIcon(cursor.getString(2));
 			live.setProvince(cursor.getString(3));
-			live.setTitle(cursor.getString(4));
-			live.setUrls(cursor.getString(5));
-			live.setNum(cursor.getInt(6));
+			live.setResolution(cursor.getString(4));
+			live.setTitle(cursor.getString(5));
+			live.setUrls(cursor.getString(6));
+			live.setNum(cursor.getInt(7));
 			lives.add(live);
 		}
 		return lives;
 	}
-	
-	public List<Type_live_togic_1> getRoundLives(String[] parms){
-		List<Type_live_togic_1> lives = new ArrayList<Type_live_togic_1>();
+
+	public ArrayList<Type_live_togic_1> getRoundLives(String[] parms) {
+		ArrayList<Type_live_togic_1> lives = new ArrayList<Type_live_togic_1>();
 		SQLiteDatabase db = mDBHelper.getReadableDatabase();
-		Cursor cursor = db.rawQuery("SELECT * FROM live_togic_1 where?=?", parms);
+		String sql = "SELECT * FROM live_togic_1 where "+parms[0]+" like '%"+parms[1]+"%'";
+		Cursor cursor = db.rawQuery(sql, null);
 		while (cursor.moveToNext()) {
 			Type_live_togic_1 live = new Type_live_togic_1();
 			live.set_id(cursor.getString(0));
 			live.setCategory(cursor.getString(1));
 			live.setIcon(cursor.getString(2));
 			live.setProvince(cursor.getString(3));
-			live.setTitle(cursor.getString(4));
-			live.setUrls(cursor.getString(5));
-			live.setNum(cursor.getInt(6));
+			live.setResolution(cursor.getString(4));
+			live.setTitle(cursor.getString(5));
+			live.setUrls(cursor.getString(6));
+			live.setNum(cursor.getInt(7));
 			lives.add(live);
 		}
 		return lives;
