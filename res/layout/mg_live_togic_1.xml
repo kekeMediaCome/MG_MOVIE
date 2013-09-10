@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
+
+    <include
+        android:id="@id/actionbar"
+        style="@style/ActionBar"
+        layout="@layout/mg_top_layout" >
+    </include>
+
+    <ListView
+        android:id="@id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:layout_above="@id/offersBannerLayout"
+        android:layout_below="@id/actionbar"
+        android:layout_marginTop="0.0dip"
+        android:background="#ff2f2f2f"
+        android:cacheColorHint="#00000000"
+        android:divider="@drawable/cbox_uc_divider"
+        android:fadeScrollbars="false"
+        android:fastScrollEnabled="false"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbars="none"
+        android:scrollingCache="false" >
+    </ListView>
+
+</RelativeLayout>

@@ -133,6 +133,14 @@ public class MG_MOVIE extends AbsListViewBaseActivity implements
 			super.onPostExecute(result);
 		}
 	}
+	
+	@Override
+	protected void onDestroy() {
+		dbUtils.close();
+		super.onDestroy();
+	}
+
+
 
 	@Override
 	public void onClick(View v) {

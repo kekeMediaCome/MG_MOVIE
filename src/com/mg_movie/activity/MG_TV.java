@@ -66,16 +66,20 @@ public class MG_TV extends AbsListViewBaseActivity implements OnClickListener {
 				Type_tv tv = list_main.get(position - 1);
 				Video video  = vParser.parse(tv.getTv_url());
 				if (video != null) {
-					Intent intent = new Intent();
-					intent.putExtra("path", video.videoUri);
-					intent.putExtra("title", video.title);
-					intent.setClass(MG_TV.this, JieLiveVideoPlayer.class);
-					startActivity(intent);
+					StartMedia(video.videoUri, tv.getTv_name());
 				}
 			}
 		});
 		new InitData().execute();
 		vParser = new VParser(this);
+	}
+	
+	public void StartMedia(String url, String title){
+		Intent intent = new Intent();
+		intent.putExtra("path", url);
+		intent.putExtra("title", title);
+		intent.setClass(MG_TV.this, JieLiveVideoPlayer.class);
+		startActivity(intent);
 	}
 
 	class InitData extends AsyncTask<Void, Void, Void> {
@@ -110,6 +114,12 @@ public class MG_TV extends AbsListViewBaseActivity implements OnClickListener {
 			tvRefresh.onRefreshComplete();
 			super.onPostExecute(result);
 		}
+	}
+	
+	@Override
+	protected void onDestroy() {
+		dbUtils.close();
+		super.onDestroy();
 	}
 
 	@Override

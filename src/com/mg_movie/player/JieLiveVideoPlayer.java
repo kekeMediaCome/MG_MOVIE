@@ -1,7 +1,5 @@
 package com.mg_movie.player;
 
-import net.youmi.android.spot.SpotManager;
-
 import com.mg_movie.R;
 
 import io.vov.vitamio.LibsChecker;
@@ -60,7 +58,7 @@ public class JieLiveVideoPlayer extends Activity implements
 		// ~~~ 检测Vitamio是否解压解码包
 		if (!LibsChecker.checkVitamioLibs(this))
 			return;
-		SpotManager.getInstance(this).showSpotAds(this);
+//		SpotManager.getInstance(this).showSpotAds(this);
 		// ~~~ 获取播放地址和标题
 		mPath = (String) getIntent().getStringExtra("path");
 		mTitle = (String) getIntent().getStringExtra("title");

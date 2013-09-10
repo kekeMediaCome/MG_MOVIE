@@ -27,7 +27,7 @@ public class Parse_home_content {
 			type = new Type_home_content();
 			type.setImg_id(R.drawable.mjicon_2);
 			type.setTitle_id(R.string.mjicon_2_title);
-			type.setCls_packet("com.mg_movie.activity.MG_LIVE");
+			type.setCls_packet("com.mg_movie.activity.MG_Live");
 			lists.add(type);
 			type = null;
 			type = new Type_home_content();
@@ -57,7 +57,7 @@ public class Parse_home_content {
 			type = new Type_home_content();
 			type.setImg_id(R.drawable.mjicon_7);
 			type.setTitle_id(R.string.mjicon_7_title);
-			type.setCls_packet(cls_packets[0]);
+			type.setCls_packet("com.mg_movie.activity.MG_Cartoon");
 			lists.add(type);
 			type = null;
 			type = new Type_home_content();

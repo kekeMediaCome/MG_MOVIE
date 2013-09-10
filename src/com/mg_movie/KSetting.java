@@ -17,4 +17,6 @@ public class KSetting {
 	public static String cartoon_pptv_com_url = "http://list.pptv.com/sort_list/3------6---1.html";
 	public static String cartoon_pptv_com_url_head = "http://list.pptv.com/sort_list/3------6---";
 	public static String cartoon_pptv_com_url_end = ".html";
+	
+	public static String live_togic_1_url = "http://tv.togic.com/api/channels?api=1";
 }

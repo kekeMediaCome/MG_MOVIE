@@ -98,17 +98,15 @@ public class MG_NetRadio extends Activity implements
 		public void onItemClick(AdapterView<?> parent, View view, int position,
 				long id) {
 			RadioType type = ChildCurrentChannel.get(position);
-			ArrayList<String> url = new ArrayList<String>();
-			url.add(type.getUrl());
-			startLiveMedia(url, type.getName());
+			StartMedia(type.getUrl(), type.getName());
 		}
 	};
 
-	private void startLiveMedia(ArrayList<String> liveUrls, String name) {
-		Intent intent = new Intent(MG_NetRadio.this, JieLiveVideoPlayer.class);
-		intent.putExtra("selected", 0);
-		intent.putExtra("playlist", liveUrls);
-		intent.putExtra("title", name);
+	public void StartMedia(String url, String title) {
+		Intent intent = new Intent();
+		intent.putExtra("path", url);
+		intent.putExtra("title", title);
+		intent.setClass(MG_NetRadio.this, JieLiveVideoPlayer.class);
 		startActivity(intent);
 	}
 
