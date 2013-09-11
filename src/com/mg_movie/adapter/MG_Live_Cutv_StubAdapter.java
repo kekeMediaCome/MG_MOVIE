@@ -67,12 +67,14 @@ public class MG_Live_Cutv_StubAdapter extends BaseAdapter {
 					.findViewById(R.id.item_img_icon);
 			viewHolder.title = (TextView) convertView
 					.findViewById(R.id.item_title);
+			viewHolder.play_btn = (ImageView)convertView.findViewById(R.id.item_img_run);
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		Type_CutvLiveSub type = lists.get(position);
 		viewHolder.title.setText(type.getChannel_name());
+		viewHolder.play_btn.setBackgroundResource(R.drawable.play_btn);
 		imageLoader.displayImage(type.getThumb(), viewHolder.img, options,
 				animateFirstListener);
 		return convertView;
@@ -81,6 +83,7 @@ public class MG_Live_Cutv_StubAdapter extends BaseAdapter {
 	class ViewHolder {
 		ImageView img;
 		TextView title;
+		ImageView play_btn;
 	}
 
 	private static class AnimateFirstDisplayListener extends

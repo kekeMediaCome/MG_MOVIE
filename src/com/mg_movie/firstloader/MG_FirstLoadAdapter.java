@@ -23,8 +23,15 @@ class MG_FirstLoadAdapter extends FragmentPagerAdapter implements
 
 	@Override
 	public Fragment getItem(int position) {
-		return FirstLoaderFragment.newInstance(CONTENT[position
-				% CONTENT.length]);
+		if (position == 0) {
+			return new First();
+		} else if (position == 1) {
+			return new Two();
+		}else if (position == 2) {
+			return new Three();
+		}else {
+			return new Four();
+		}
 	}
 
 	@Override

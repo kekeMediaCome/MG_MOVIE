@@ -39,6 +39,7 @@ public class MG_FirstLoad extends FragmentActivity {
 				.setOnPageChangeListener(new ViewPager.OnPageChangeListener() {
 					@Override
 					public void onPageSelected(int position) {
+						
 					}
 
 					@Override

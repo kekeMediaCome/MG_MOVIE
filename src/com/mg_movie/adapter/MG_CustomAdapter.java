@@ -109,12 +109,14 @@ public class MG_CustomAdapter extends BaseExpandableListAdapter {
 			viewHolder.name.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
 			viewHolder.name.setPadding(60, 0, 0, 0);
 			viewHolder.logo = (ImageView)convertView.findViewById(R.id.item_img_icon);
+			viewHolder.play_btn = (ImageView)convertView.findViewById(R.id.item_img_run);
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		viewHolder.name.setText(childArray.get(groupPosition)
 				.get(childPosition)[0]);
+		viewHolder.play_btn.setBackgroundResource(R.drawable.play_btn);
 		viewHolder.logo.setBackgroundResource(R.drawable.ic_userdef);
 		return convertView;
 	}
@@ -122,6 +124,7 @@ public class MG_CustomAdapter extends BaseExpandableListAdapter {
 	class ViewHolder {
 		TextView name;
 		ImageView logo;
+		ImageView play_btn;
 	}
 
 	@Override

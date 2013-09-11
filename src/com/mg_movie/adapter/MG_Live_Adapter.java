@@ -68,12 +68,14 @@ public class MG_Live_Adapter extends BaseAdapter {
 					.findViewById(R.id.item_img_icon);
 			viewHolder.title = (TextView) convertView
 					.findViewById(R.id.item_title);
+			viewHolder.play_btn = (ImageView)convertView.findViewById(R.id.item_img_run);
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		Type_live_togic_1 type = lists.get(position);
 		viewHolder.title.setText(type.getTitle());
+		viewHolder.play_btn.setBackgroundResource(R.drawable.play_btn);
 		imageLoader.displayImage(type.getIcon(), viewHolder.img, options,
 				animateFirstListener);
 		return convertView;
@@ -101,6 +103,7 @@ public class MG_Live_Adapter extends BaseAdapter {
 	class ViewHolder {
 		ImageView img;
 		TextView title;
+		ImageView play_btn;
 	}
 
 }
