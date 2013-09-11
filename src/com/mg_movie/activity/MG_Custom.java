@@ -22,8 +22,10 @@ import com.mg_movie.KSetting;
 import com.mg_movie.MG_Exit;
 import com.mg_movie.R;
 import com.mg_movie.adapter.MG_CustomAdapter;
+import com.mg_movie.player.JieLiveVideoPlayer;
 
 import android.app.ProgressDialog;
+import android.content.Intent;
 import android.os.AsyncTask;
 import android.os.Bundle;
 import android.os.Environment;
@@ -52,6 +54,8 @@ public class MG_Custom extends MG_BaseActivity implements OnClickListener, OnChi
 		home_top_img.setBackgroundResource(R.drawable.btn_back_normal);
 		TextView home_top_name = (TextView) findViewById(R.id.home_top_name);
 		home_top_name.setText("自定义");
+		groupArray = new ArrayList<String>();
+		childArray = new ArrayList<List<String[]>>();
 		progress = new ProgressDialog(MG_Custom.this);
 		progress.setMessage("解析中...");
 		listview = (ExpandableListView)findViewById(R.id.listview);
@@ -273,8 +277,14 @@ public class MG_Custom extends MG_BaseActivity implements OnClickListener, OnChi
 	}
 
 	@Override
-	public boolean onChildClick(ExpandableListView arg0, View arg1, int arg2,
-			int arg3, long arg4) {
-		return false;
+	public boolean onChildClick(ExpandableListView parent, View v,
+			int groupPosition, int childPosition, long id) {
+		String[] channel = childArray.get(groupPosition).get(childPosition);
+		Intent intent = new Intent();
+		intent.setClass(MG_Custom.this, JieLiveVideoPlayer.class);
+		intent.putExtra("title", channel[0]);
+		intent.putExtra("path", channel[1]);
+		startActivity(intent);
+		return true;
 	}
 }

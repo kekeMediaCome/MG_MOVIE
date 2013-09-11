@@ -10,6 +10,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 public class MG_CustomAdapter extends BaseExpandableListAdapter {
@@ -81,6 +82,7 @@ public class MG_CustomAdapter extends BaseExpandableListAdapter {
 			convertView = mLayoutInflater.inflate(
 					R.layout.mg_home_listview_item, null);
 			viewHolder = new ViewHolder();
+			viewHolder.logo = (ImageView)convertView.findViewById(R.id.item_img_run);
 			viewHolder.name = (TextView) convertView
 					.findViewById(R.id.item_title);
 			viewHolder.name.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
@@ -89,6 +91,7 @@ public class MG_CustomAdapter extends BaseExpandableListAdapter {
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
+		viewHolder.logo.setVisibility(View.INVISIBLE);
 		viewHolder.name.setText(groupArray.get(groupPosition));
 		return convertView;
 	}
@@ -105,17 +108,20 @@ public class MG_CustomAdapter extends BaseExpandableListAdapter {
 					.findViewById(R.id.item_title);
 			viewHolder.name.setGravity(Gravity.CENTER_VERTICAL | Gravity.LEFT);
 			viewHolder.name.setPadding(60, 0, 0, 0);
+			viewHolder.logo = (ImageView)convertView.findViewById(R.id.item_img_icon);
 			convertView.setTag(viewHolder);
 		} else {
 			viewHolder = (ViewHolder) convertView.getTag();
 		}
 		viewHolder.name.setText(childArray.get(groupPosition)
 				.get(childPosition)[0]);
+		viewHolder.logo.setBackgroundResource(R.drawable.ic_userdef);
 		return convertView;
 	}
 
 	class ViewHolder {
 		TextView name;
+		ImageView logo;
 	}
 
 	@Override

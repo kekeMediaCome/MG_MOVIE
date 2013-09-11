@@ -1,5 +1,9 @@
 package com.mg_movie.activity;
 
+import java.io.File;
+import java.io.FileOutputStream;
+import java.io.InputStream;
+import java.io.OutputStream;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -12,6 +16,7 @@ import android.app.Activity;
 import android.content.SharedPreferences;
 import android.content.SharedPreferences.Editor;
 import android.net.ConnectivityManager;
+import android.os.Environment;
 import android.view.KeyEvent;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -104,7 +109,7 @@ public class MG_BaseActivity extends Activity {
 				MG_Exit.getInstance().exit();
 			}
 			return true;
-		}else {
+		} else {
 			return super.onKeyDown(keyCode, event);
 		}
 	}
@@ -122,5 +127,35 @@ public class MG_BaseActivity extends Activity {
 		Editor editor = preferences.edit();
 		editor.putBoolean("isFirstIn", false);
 		editor.commit();
+	}
+
+	public String dbPath = Environment.getExternalStorageDirectory() + "/"
+			+ "zs.sqlite";
+
+	public void checkDB() {
+		File file = new File(dbPath);
+		if (!file.exists()) {
+			copyDataBase(dbPath);
+		}
+	}
+
+	private void copyDataBase(String outpath) {
+		try {
+			InputStream myInput = getAssets().open("zs.sqlite");
+			// Path to the just created empty db
+			// Open the empty db as the output stream
+			OutputStream myOutput = new FileOutputStream(outpath);
+			// transfer bytes from the inputfile to the outputfile
+			byte[] buffer = new byte[1024];
+			int length;
+			while ((length = myInput.read(buffer)) > 0) {
+				myOutput.write(buffer, 0, length);
+			}
+			// Close the streams
+			myOutput.flush();
+			myOutput.close();
+			myInput.close();
+		} catch (Exception e) {
+		}
 	}
 }

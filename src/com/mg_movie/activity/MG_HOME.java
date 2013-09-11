@@ -132,6 +132,7 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener {
 		adapter = new MG_HomeAdapter(inflater, lists);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new ListItemOnClik());
+		checkDB();
 	}
 
 	@Override
