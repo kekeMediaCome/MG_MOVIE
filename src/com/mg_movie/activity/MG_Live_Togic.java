@@ -2,6 +2,7 @@ package com.mg_movie.activity;
 
 import java.util.ArrayList;
 
+import com.mg_movie.MG_Exit;
 import com.mg_movie.R;
 import com.mg_movie.firstloader.FirstLoaderFragment;
 import com.mg_movie.live.Live_gangtai;
@@ -23,7 +24,7 @@ import android.support.v4.app.FragmentManager;
 import android.support.v4.app.FragmentPagerAdapter;
 import android.support.v4.view.ViewPager;
 
-public class MG_Live extends FragmentActivity {
+public class MG_Live_Togic extends FragmentActivity {
 	private static final String[] CONTENT = new String[] { "央视", "卫视", "地方",
 			"港台", "体育", "影视", "新闻", "少儿" };
 	private static final int[] ICONS = new int[] {
@@ -40,6 +41,7 @@ public class MG_Live extends FragmentActivity {
 	protected void onCreate(Bundle bundle) {
 		super.onCreate(bundle);
 		setContentView(R.layout.mg_live_1);
+		MG_Exit.getInstance().addActivity(this);
 		dbUtils = new DBUtils(this);
 		FragmentPagerAdapter adapter = new GoogleMusicAdapter(
 				getSupportFragmentManager());

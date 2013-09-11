@@ -28,17 +28,24 @@ public class ServerPPTVCartoon {
 		@Override
 		protected Void doInBackground(Void... params) {
 			DBUtils dbUtils = new DBUtils(instance);
-			Parser_cartoon_pptv_com parse = new Parser_cartoon_pptv_com();
-			listPages = parse.ParsePage(KSetting.cartoon_pptv_com_url);
-			int count = listPages.size();
-			for (int i = 0; i < count; i++) {
-				List<Type_cartoon> cartoons = parse.ParseCartoon(listPages
-						.get(i));
-				for (Type_cartoon cartoon : cartoons) {
-					dbUtils.insertCT(cartoon);
-					AppLog.e("   当前插入页： " + i);
+			try {
+				Parser_cartoon_pptv_com parse = new Parser_cartoon_pptv_com();
+				listPages = parse.ParsePage(KSetting.cartoon_pptv_com_url);
+				int count = listPages.size();
+				for (int i = 0; i < count; i++) {
+					List<Type_cartoon> cartoons = parse.ParseCartoon(listPages
+							.get(i));
+					for (Type_cartoon cartoon : cartoons) {
+						dbUtils.insertCT(cartoon);
+						AppLog.e("   当前插入页： " + i);
+					}
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally{
+				dbUtils.close();
 			}
+			
 			return null;
 		}
 

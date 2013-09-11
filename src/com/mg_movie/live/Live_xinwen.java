@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
@@ -55,7 +56,9 @@ public class Live_xinwen extends GlobalFragment implements OnClickListener,
 	@Override
 	public void onActivityCreated(Bundle savedInstanceState) {
 		super.onActivityCreated(savedInstanceState);
-		live_View.findViewById(R.id.home_top_menudraw).setOnClickListener(this);
+		ImageView home_top_img = (ImageView)live_View.findViewById(R.id.home_top_menudraw);
+		home_top_img.setOnClickListener(this);
+		home_top_img.setBackgroundResource(R.drawable.btn_back_normal);
 		TextView home_top_name = (TextView) live_View
 				.findViewById(R.id.home_top_name);
 		home_top_name.setText("分类直播");

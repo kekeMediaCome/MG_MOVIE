@@ -1,7 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_width="match_parent"
-    android:layout_height="match_parent" >
+    android:layout_height="match_parent"
+    android:orientation="vertical" >
 
     <include
         android:id="@id/actionbar"
@@ -9,21 +10,86 @@
         layout="@layout/mg_top_layout" >
     </include>
 
-    <ListView
-        android:id="@id/listview"
+    <LinearLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent"
-        android:layout_above="@id/offersBannerLayout"
-        android:layout_below="@id/actionbar"
-        android:layout_marginTop="0.0dip"
-        android:background="#ff2f2f2f"
-        android:cacheColorHint="#00000000"
-        android:divider="@drawable/cbox_uc_divider"
-        android:fadeScrollbars="false"
-        android:fastScrollEnabled="false"
-        android:focusable="true"
-        android:focusableInTouchMode="true"
-        android:scrollbars="none"
-        android:scrollingCache="false" >
-    </ListView>
-</RelativeLayout>
+        android:layout_height="0dp"
+        android:layout_gravity="center"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@id/live_1"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/divider_main_header"
+            android:drawableTop="@drawable/ic_live"
+            android:gravity="center"
+            android:text="@string/live_1" >
+        </TextView>
+
+        <TextView
+            android:id="@id/live_2"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_live"
+            android:gravity="center"
+            android:text="@string/live_2" >
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@id/live_3"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/divider_main_header"
+            android:drawableTop="@drawable/ic_live"
+            android:gravity="center"
+            android:text="@string/live_3" >
+        </TextView>
+
+        <TextView
+            android:id="@id/live_4"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_setup"
+            android:gravity="center"
+            android:text="@string/live_4" >
+        </TextView>
+    </LinearLayout>
+
+    <LinearLayout
+        android:layout_width="match_parent"
+        android:layout_height="0dp"
+        android:layout_weight="1" >
+
+        <TextView
+            android:id="@id/live_5"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableRight="@drawable/divider_main_header"
+            android:drawableTop="@drawable/ic_save"
+            android:gravity="center"
+            android:text="@string/live_5" >
+        </TextView>
+
+        <TextView
+            android:id="@id/live_6"
+            android:layout_width="0dp"
+            android:layout_height="match_parent"
+            android:layout_weight="1"
+            android:drawableTop="@drawable/ic_userdef"
+            android:gravity="center"
+            android:text="@string/live_6" >
+        </TextView>
+    </LinearLayout>
+
+</LinearLayout>

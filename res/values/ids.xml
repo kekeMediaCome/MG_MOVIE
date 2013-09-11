@@ -28,4 +28,10 @@
     <item type="id" name="tv_item_logo">false</item>
     <item type="id" name="tv_item_title">false</item>
     <item type="id" name="tv_item_mark_txt">false</item>
+    <item type="id" name="live_1">false</item>
+    <item type="id" name="live_2">false</item>
+    <item type="id" name="live_3">false</item>
+    <item type="id" name="live_4">false</item>
+    <item type="id" name="live_5">false</item>
+    <item type="id" name="live_6">false</item>
 </resources>

@@ -25,7 +25,6 @@ import android.widget.AdapterView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ImageView;
 import android.widget.ListView;
-import android.widget.RelativeLayout;
 import android.widget.TextView;
 import android.widget.ImageView.ScaleType;
 
@@ -53,7 +52,7 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener {
 	// or to execute periodically.
 	private ScheduledExecutorService scheduledExecutorService;
 	private View listViewHeader;
-	private ListView listView;
+	private ListView listView, menuListView;
 	private List<Type_home_content> lists;
 	private MG_HomeAdapter adapter;
 	public LayoutInflater inflater;
@@ -82,6 +81,9 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener {
 				Position.LEFT, MenuDrawer.MENU_DRAG_CONTENT);
 		mMenuDrawer.setMenuView(R.layout.mg_home_menudraw);
 		mMenuDrawer.setContentView(R.layout.mg_home);
+		menuAdapter = new MG__Home_MenuDraw_Adapter(this);
+		menuListView = (ListView)findViewById(R.id.home_menudraw_listview);
+		menuListView.setAdapter(menuAdapter);
 //		// (可选)使用积分Banner-一个新的积分墙入口点，随时随地让用户关注新的积分广告
 //		mBanner = new OffersBanner(instance, OffersAdSize.SIZE_MATCH_SCREENx60);
 //		RelativeLayout layoutOffersBanner = (RelativeLayout) findViewById(R.id.offersBannerLayout);
@@ -130,7 +132,6 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener {
 		adapter = new MG_HomeAdapter(inflater, lists);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(new ListItemOnClik());
-		
 	}
 
 	@Override
@@ -183,7 +184,6 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener {
 				}
 			}
 		}
-
 	}
 
 	/**

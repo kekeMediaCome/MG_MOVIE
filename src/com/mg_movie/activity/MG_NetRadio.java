@@ -22,11 +22,12 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.ListView;
 import android.widget.TextView;
 import android.widget.Toast;
 
-public class MG_NetRadio extends Activity implements
+public class MG_NetRadio extends MG_BaseActivity implements
 		RadioMenuAdapter.MenuListener, OnClickListener {
 
 	private static final String radioURL = "http://rushplayer.com/wapstream.aspx?v=1.54&t=1&g=8&app=1000";
@@ -57,7 +58,9 @@ public class MG_NetRadio extends Activity implements
 		mMenuDrawer.setContentView(R.layout.radio_channel_content);
 		mMenuDrawer.setAllowIndicatorAnimation(true);
 
-		findViewById(R.id.home_top_menudraw).setOnClickListener(this);
+		ImageView home_top_img = (ImageView)findViewById(R.id.home_top_menudraw);
+		home_top_img.setOnClickListener(this);
+		home_top_img.setBackgroundResource(R.drawable.btn_back_normal);
 		TextView home_top_name = (TextView) findViewById(R.id.home_top_name);
 		home_top_name.setText("Radio");
 
@@ -234,21 +237,6 @@ public class MG_NetRadio extends Activity implements
 
 	public void showInfo(String info) {
 		Toast.makeText(this, info, Toast.LENGTH_SHORT).show();
-	}
-
-	// 添加网络检查
-	public void checkNetwork() {
-		if (con == null) {
-			con = (ConnectivityManager) getSystemService(Activity.CONNECTIVITY_SERVICE);
-		}
-		boolean wifi = con.getNetworkInfo(ConnectivityManager.TYPE_WIFI)
-				.isConnectedOrConnecting();
-		boolean internet = con.getNetworkInfo(ConnectivityManager.TYPE_MOBILE)
-				.isConnectedOrConnecting();
-		if (!wifi && !internet) {
-			showInfo("请检查网络环境，稍后再试");
-			finish();
-		}
 	}
 
 	@Override

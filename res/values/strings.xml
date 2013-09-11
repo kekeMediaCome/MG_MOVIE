@@ -22,7 +22,17 @@
     <string name="mjicon_5_title">电视剧</string>
     <string name="mjicon_6_title">音乐</string>
     <string name="mjicon_7_title">卡通</string>
-    <string name="mjicon_8_title">体育</string>
+    <string name="mjicon_8_title">CUTV</string>
+    <string name="mjicon_9_title">CNTV</string>
+    
+    
+    <string name="live_1">分类直播</string>
+    <string name="live_2">CUTV</string>
+    <string name="live_3">CNTV</string>
+    <string name="live_4">自定义</string>
+    <string name="live_5">收藏频道</string>
+    <string name="live_6">设置</string>
+    
     <string name="menu_item_clear_memory_cache">Clear memory cache</string>
     <string name="menu_item_clear_disc_cache">Clear disc cache</string>
     <string name="menu_item_pause_on_scroll">Pause on scroll</string>

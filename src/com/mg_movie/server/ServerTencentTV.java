@@ -30,17 +30,23 @@ public class ServerTencentTV {
 		@Override
 		protected Void doInBackground(Void... params) {
 			DBUtils dbUtils = new DBUtils(instance);
-			Parser_tv_qq_com parse = new Parser_tv_qq_com();
-			listPages = parse.ParsePage(KSetting.tv_q_com_url);
-			int count = listPages.size();
-			for (int i = 0; i < count; i++) {
-				List<Type_tv> videos = parse.ParseTV(listPages.get(i));
-				for (Type_tv video: videos) {
-					AppLog.e("   当前插入页： "+i);
-//					parse.ParseTVAll(video.getTv_url());
-					dbUtils.insertTV(video);
+			try {
+				Parser_tv_qq_com parse = new Parser_tv_qq_com();
+				listPages = parse.ParsePage(KSetting.tv_q_com_url);
+				int count = listPages.size();
+				for (int i = 0; i < count; i++) {
+					List<Type_tv> videos = parse.ParseTV(listPages.get(i));
+					for (Type_tv video: videos) {
+						AppLog.e("   TV当前插入页： "+i);
+						dbUtils.insertTV(video);
+					}
 				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			}finally{
+				dbUtils.close();
 			}
+			
 			return null;
 		}
 

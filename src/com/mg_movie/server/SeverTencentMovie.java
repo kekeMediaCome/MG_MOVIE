@@ -41,6 +41,8 @@ public class SeverTencentMovie{
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally{
+				dbUtils.close();
 			}
 			return null;
 		}

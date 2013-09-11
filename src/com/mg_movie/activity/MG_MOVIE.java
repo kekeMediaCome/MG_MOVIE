@@ -25,6 +25,7 @@ import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
 import android.widget.GridView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 import android.widget.AdapterView.OnItemClickListener;
@@ -55,7 +56,9 @@ public class MG_MOVIE extends AbsListViewBaseActivity implements
 		} else {
 			count = temp_count / 100 + 1;
 		}
-		findViewById(R.id.home_top_menudraw).setOnClickListener(this);
+		ImageView home_top_img = (ImageView)findViewById(R.id.home_top_menudraw);
+		home_top_img.setOnClickListener(this);
+		home_top_img.setBackgroundResource(R.drawable.btn_back_normal);
 		TextView home_top_name = (TextView) findViewById(R.id.home_top_name);
 		home_top_name.setText("Movie");
 		movieRefresh = (PullToRefreshGridView) findViewById(R.id.pull_refresh_grid);

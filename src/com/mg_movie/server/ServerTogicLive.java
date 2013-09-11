@@ -25,10 +25,16 @@ public class ServerTogicLive {
 		@Override
 		protected Void doInBackground(Void... params) {
 			DBUtils dbUtils = new DBUtils(instance);
-			JsonParseTogic_1 parse = new JsonParseTogic_1();
-			List<Type_live_togic_1> listPages = parse.getTvChannel();
-			for (Type_live_togic_1 live : listPages) {
-				dbUtils.insertLive(live);
+			try {
+				JsonParseTogic_1 parse = new JsonParseTogic_1();
+				List<Type_live_togic_1> listPages = parse.getTvChannel();
+				for (Type_live_togic_1 live : listPages) {
+					dbUtils.insertLive(live);
+				}
+			} catch (Exception e) {
+				e.printStackTrace();
+			} finally {
+				dbUtils.close();
 			}
 			return null;
 		}

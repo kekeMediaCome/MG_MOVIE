@@ -9,6 +9,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.widget.AdapterView;
+import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.AdapterView.OnItemClickListener;
 import android.widget.ListView;
@@ -44,7 +45,9 @@ public class MG_TV extends AbsListViewBaseActivity implements OnClickListener {
 		instance = this;
 		MG_Exit.getInstance().addActivity(this);
 		dbUtils = new DBUtils(this);
-		findViewById(R.id.home_top_menudraw).setOnClickListener(this);
+		ImageView home_top_img = (ImageView) findViewById(R.id.home_top_menudraw);
+		home_top_img.setOnClickListener(this);
+		home_top_img.setBackgroundResource(R.drawable.btn_back_normal);
 		TextView home_top_name = (TextView) findViewById(R.id.home_top_name);
 		home_top_name.setText("TV");
 		tvRefresh = (PullToRefreshListView) findViewById(R.id.listview);
@@ -64,7 +67,7 @@ public class MG_TV extends AbsListViewBaseActivity implements OnClickListener {
 			public void onItemClick(AdapterView<?> parent, View view,
 					int position, long id) {
 				Type_tv tv = list_main.get(position - 1);
-				Video video  = vParser.parse(tv.getTv_url());
+				Video video = vParser.parse(tv.getTv_url());
 				if (video != null) {
 					StartMedia(video.videoUri, tv.getTv_name());
 				}
@@ -73,8 +76,8 @@ public class MG_TV extends AbsListViewBaseActivity implements OnClickListener {
 		new InitData().execute();
 		vParser = new VParser(this);
 	}
-	
-	public void StartMedia(String url, String title){
+
+	public void StartMedia(String url, String title) {
 		Intent intent = new Intent();
 		intent.putExtra("path", url);
 		intent.putExtra("title", title);
@@ -115,7 +118,7 @@ public class MG_TV extends AbsListViewBaseActivity implements OnClickListener {
 			super.onPostExecute(result);
 		}
 	}
-	
+
 	@Override
 	protected void onDestroy() {
 		dbUtils.close();

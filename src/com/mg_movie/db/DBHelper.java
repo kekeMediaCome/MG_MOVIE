@@ -4,11 +4,12 @@ import android.content.Context;
 import android.database.sqlite.SQLiteDatabase;
 import android.database.sqlite.SQLiteDatabase.CursorFactory;
 import android.database.sqlite.SQLiteOpenHelper;
+import android.os.Environment;
 
 public class DBHelper extends SQLiteOpenHelper {
 
 	private static final String NAME = "zs.sqlite";
-	private static final String DB_PATH = "/mnt/sdcard/";
+	private static final String DB_PATH = Environment.getExternalStorageDirectory() + "/";
 	private static final int DB_VERSION = 1;
 	public static final String TABLE_NAME_CHANNLE_MOVIE = "movie";
 	public static final String MOVIE_SQL = "CREATE TABLE movie ('video_id' INTEGER PRIMARY KEY  AUTOINCREMENT, 'video_name' VARCHAR, 'video_urlstite' VARCHAR, 'video_url' VARCHAR, 'video_img' VARCHAR, 'video_source' VARCHAR, 'video_mark' VARCHAR)";

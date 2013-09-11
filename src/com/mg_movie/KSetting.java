@@ -19,4 +19,10 @@ public class KSetting {
 	public static String cartoon_pptv_com_url_end = ".html";
 	
 	public static String live_togic_1_url = "http://tv.togic.com/api/channels?api=1";
+
+	public static String cutvurl = "http://ugc.sun-cam.com/api/tv_live_api.php?action=tv_live&prod_type=android";
+	public static String cutv_sub_url = "http://ugc.sun-cam.com/api/tv_live_api.php?action=channel_prg_list&tv_id=";
+
+	public static String rushplayer = "http://rushplayer.com/wapstream.aspx?v=1.54&t=2&g=278&app=1000";
+	public static String rushplayer_head = "http://rushplayer.com/";
 }

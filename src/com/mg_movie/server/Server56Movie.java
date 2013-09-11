@@ -42,6 +42,8 @@ public class Server56Movie {
 				}
 			} catch (Exception e) {
 				e.printStackTrace();
+			}finally{
+				dbUtils.close();
 			}
 			return null;
 		}
