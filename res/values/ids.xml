@@ -51,5 +51,6 @@
     <item type="id" name="play_time_five">false</item>
     <item type="id" name="play_time_six">false</item>
     <item type="id" name="play_time_seven">false</item>
+    <item type="id" name="webview">false</item>
 
 </resources>

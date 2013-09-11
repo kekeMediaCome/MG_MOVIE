@@ -61,7 +61,7 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener {
 	/**
 	 * 积分 Mini Banner
 	 */
-//	OffersBanner mBanner;
+	// OffersBanner mBanner;
 	// 切换当前显示的图片
 	@SuppressLint("HandlerLeak")
 	private Handler handler = new Handler() {
@@ -82,12 +82,27 @@ public class MG_HOME extends MG_BaseActivity implements OnClickListener {
 		mMenuDrawer.setMenuView(R.layout.mg_home_menudraw);
 		mMenuDrawer.setContentView(R.layout.mg_home);
 		menuAdapter = new MG__Home_MenuDraw_Adapter(this);
-		menuListView = (ListView)findViewById(R.id.home_menudraw_listview);
+		menuListView = (ListView) findViewById(R.id.home_menudraw_listview);
 		menuListView.setAdapter(menuAdapter);
-//		// (可选)使用积分Banner-一个新的积分墙入口点，随时随地让用户关注新的积分广告
-//		mBanner = new OffersBanner(instance, OffersAdSize.SIZE_MATCH_SCREENx60);
-//		RelativeLayout layoutOffersBanner = (RelativeLayout) findViewById(R.id.offersBannerLayout);
-//		layoutOffersBanner.addView(mBanner);
+		menuListView.setOnItemClickListener(new OnItemClickListener() {
+			@Override
+			public void onItemClick(AdapterView<?> parent, View view,
+					int position, long id) {
+				if (position == 2) {
+					Intent about = new Intent();
+					about.setClass(MG_HOME.this, MG_About.class);
+					about.putExtra("msgPath", "about.html");
+					about.putExtra("msgName", "关于");
+					startActivity(about);
+				}
+			}
+		});
+		// // (可选)使用积分Banner-一个新的积分墙入口点，随时随地让用户关注新的积分广告
+		// mBanner = new OffersBanner(instance,
+		// OffersAdSize.SIZE_MATCH_SCREENx60);
+		// RelativeLayout layoutOffersBanner = (RelativeLayout)
+		// findViewById(R.id.offersBannerLayout);
+		// layoutOffersBanner.addView(mBanner);
 		findViewById(R.id.home_top_menudraw).setOnClickListener(this);
 		TextView home_top_name = (TextView) findViewById(R.id.home_top_name);
 		home_top_name.setText("Home");
