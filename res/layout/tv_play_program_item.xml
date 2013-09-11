@@ -1,0 +1,39 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="wrap_content"
+    android:orientation="horizontal" >
+
+    <TextView
+        android:id="@id/program_time"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentLeft="true"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="16.0dip"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@id/program_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_alignParentRight="true"
+        android:layout_centerVertical="true"
+        android:layout_marginBottom="4.0dip"
+        android:layout_marginRight="20.0dip"
+        android:layout_marginTop="4.0dip"
+        android:gravity="center" />
+
+    <TextView
+        android:id="@id/program_name"
+        android:layout_width="fill_parent"
+        android:layout_height="wrap_content"
+        android:layout_centerVertical="true"
+        android:layout_marginLeft="36.0dip"
+        android:layout_marginRight="0.0dip"
+        android:layout_toLeftOf="@id/program_status"
+        android:layout_toRightOf="@id/program_time"
+        android:layout_weight="1.0"
+        android:gravity="center" />
+
+</RelativeLayout>

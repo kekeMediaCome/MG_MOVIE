@@ -1,20 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <string name="app_name">媒聚</string>
+    <string name="app_name">百纳盒</string>
     <string name="action_settings">设置</string>
     <string name="imageviewconscrip">MG_Movie</string>
     <string name="video_layout_loading">正在缓冲…</string>
     <string name="network_check_error">请检查网络环境，稍后再试</string>
-    <string name="double_back_exit">再次点击退出，媒聚</string>
+    <string name="double_back_exit">再次点击，退出百纳盒网络电视</string>
     <string name="refrash_all_finish">已经全部加载完毕....</string>
     <string name="video_parse_loading">加载中....</string>
     <string name="video_cover_title">媒聚</string>
     <string name="video_cover_mark">高清</string>
     <string name="layout_title_home">Home</string>
-    
-    
-    
     <string name="mjicon_1_title">应用推荐</string>
     <string name="mjicon_2_title">直播</string>
     <string name="mjicon_3_title">电台</string>
@@ -24,15 +21,24 @@
     <string name="mjicon_7_title">卡通</string>
     <string name="mjicon_8_title">CUTV</string>
     <string name="mjicon_9_title">CNTV</string>
-    
-    
     <string name="live_1">分类直播</string>
     <string name="live_2">CUTV</string>
     <string name="live_3">CNTV</string>
     <string name="live_4">自定义</string>
     <string name="live_5">收藏频道</string>
     <string name="live_6">设置</string>
-    
+    <string name="tv_time_playnow">正在直播</string>
+    <string name="tv_time_remind">提醒</string>
+    <string name="tv_time_playback">回看</string>
+    <string name="category_live">直播</string>
+    <string name="play_time_one">周一</string>
+    <string name="play_time_two">周二</string>
+    <string name="play_time_three">周三</string>
+    <string name="play_time_four">周四</string>
+    <string name="play_time_five">周五</string>
+    <string name="play_time_six">周六</string>
+    <string name="play_time_seven">周日</string>
+    <string name="category_home">最新推荐</string>
     <string name="menu_item_clear_memory_cache">Clear memory cache</string>
     <string name="menu_item_clear_disc_cache">Clear disc cache</string>
     <string name="menu_item_pause_on_scroll">Pause on scroll</string>

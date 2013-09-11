@@ -1,6 +1,6 @@
 <resources>
-    <style name="AppBaseTheme" parent="android:Theme.Light">
-    </style>
+
+    <style name="AppBaseTheme" parent="android:Theme.Light"></style>
 
     <!-- Application theme. -->
     <style name="AppTheme" parent="AppBaseTheme">
@@ -120,8 +120,33 @@
     </style>
 
     <style name="ActionBarHomeItem" parent="ActionBarItem">
-        <item name="android:layout_marginRight">1px</item>
-        <item name="android:layout_marginLeft">0px</item>
+        <item name="android:layout_marginRight">1dp</item>
+        <item name="android:layout_marginLeft">0dp</item>
+    </style>
+
+    <style name="ucenter_category_radiobutton">
+        <item name="android:textSize">15.0sp</item>
+        <item name="android:textColor">@drawable/cbox_ucenter_category_color_selector</item>
+        <item name="android:gravity">center</item>
+        <item name="android:background">@drawable/cbox_ucenter_category_selector</item>
+        <item name="android:paddingLeft">5.0dip</item>
+        <item name="android:paddingRight">5.0dip</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_marginLeft">3.0dip</item>
+        <item name="android:layout_marginRight">3.0dip</item>
+        <item name="android:button">@null</item>
+        <item name="android:singleLine">true</item>
+    </style>
+
+    <style name="activity_title_text">
+        <item name="android:textSize">19.0sp</item>
+        <item name="android:textStyle">bold</item>
+        <item name="android:textColor">#ffffffff</item>
+        <item name="android:layout_gravity">center</item>
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:text">@string/category_home</item>
     </style>
 
 </resources>

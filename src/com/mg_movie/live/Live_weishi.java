@@ -61,7 +61,7 @@ public class Live_weishi extends GlobalFragment implements OnClickListener,
 		home_top_img.setBackgroundResource(R.drawable.btn_back_normal);
 		TextView home_top_name = (TextView) live_View
 				.findViewById(R.id.home_top_name);
-		home_top_name.setText("分类直播");
+		home_top_name.setText("卫视频道");
 		listView = (ListView) live_View.findViewById(R.id.listview);
 		listView.setAdapter(adapter);
 		listView.setOnItemClickListener(this);

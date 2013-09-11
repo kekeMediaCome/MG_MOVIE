@@ -11,6 +11,7 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.mg_movie.AppLog;
 import com.mg_movie.db.DBHelper;
+import com.mg_movie.type.Remind;
 import com.mg_movie.type.Type_cartoon;
 import com.mg_movie.type.Type_live_togic_1;
 import com.mg_movie.type.Type_tv;
@@ -315,7 +316,8 @@ public class DBUtils implements Serializable {
 	public ArrayList<Type_live_togic_1> getRoundLives(String[] parms) {
 		ArrayList<Type_live_togic_1> lives = new ArrayList<Type_live_togic_1>();
 		SQLiteDatabase db = mDBHelper.getReadableDatabase();
-		String sql = "SELECT * FROM live_togic_1 where "+parms[0]+" like '%"+parms[1]+"%'";
+		String sql = "SELECT * FROM live_togic_1 where " + parms[0]
+				+ " like '%" + parms[1] + "%'";
 		Cursor cursor = db.rawQuery(sql, null);
 		while (cursor.moveToNext()) {
 			Type_live_togic_1 live = new Type_live_togic_1();
@@ -330,5 +332,116 @@ public class DBUtils implements Serializable {
 			lives.add(live);
 		}
 		return lives;
+	}
+
+	public void deleteAllCollects() {
+		SQLiteDatabase localSQLiteDatabase = mDBHelper.getWritableDatabase();
+		localSQLiteDatabase.delete("collect", "", null);
+		localSQLiteDatabase.close();
+		close();
+	}
+
+	public void deleteAllHistory() {
+		SQLiteDatabase db = mDBHelper.getWritableDatabase();
+		db.delete("history", "", null);
+		db.close();
+		close();
+	}
+
+	public void deleteAllRemind() {
+		SQLiteDatabase db = mDBHelper.getWritableDatabase();
+		db.delete("remind", "", null);
+		db.close();
+		close();
+	}
+
+	public void deleteOneCollect(int paramInt) {
+		SQLiteDatabase db = mDBHelper.getWritableDatabase();
+		try {
+			String sql = "delete from collect where _id = " + paramInt;
+			db.execSQL(sql);
+		} catch (Exception e) {
+		} finally {
+			db.close();
+		}
+	}
+
+	public void deleteOneHistory(int paramInt) {
+		SQLiteDatabase db = mDBHelper.getWritableDatabase();
+		try {
+			String sql = "delete from history where _id = " + paramInt;
+			db.execSQL(sql);
+		} catch (Exception e) {
+		} finally {
+			db.close();
+		}
+	}
+
+	public void deleteOneRemind(String paramInt) {
+		SQLiteDatabase db = mDBHelper.getWritableDatabase();
+		try {
+			String sql = "delete from remind where _id = " + paramInt;
+			db.execSQL(sql);
+		} catch (Exception e) {
+		} finally {
+			db.close();
+		}
+	}
+
+	public void deleteSomeCollects(List<Integer> paramList) {
+		// if (paramList == null || paramList.size() == 0) {
+		// return;
+		// }
+		// SQLiteDatabase db = mDBHelper.getWritableDatabase();
+		// try {
+		//
+		// } catch (Exception e) {
+		// }
+	}
+
+	public int getAllRemindsCount() {
+		SQLiteDatabase db = mDBHelper.getReadableDatabase();
+		Cursor cursor = db.rawQuery("SELECT count(*) FROM remind", null);
+		cursor.moveToNext();
+		int i = cursor.getInt(0);
+		cursor.close();
+		db.close();
+		return i;
+	}
+
+	public void insertRemind(Remind paramRemind) {
+		SQLiteDatabase db = null;
+		try {
+			if (!StringUtils.isBlank(paramRemind.getTitle())) {
+				db = mDBHelper.getWritableDatabase();
+				ContentValues contentValues = new ContentValues();
+				contentValues.put("title", paramRemind.getTitle());
+				contentValues
+						.put("channel_name", paramRemind.getChannel_name());
+				contentValues.put("remind_time", paramRemind.getRemind_time());
+				contentValues.put("is_new",
+						Integer.valueOf(paramRemind.getIs_new()));
+				contentValues.put("pic", paramRemind.getPic());
+				db.insertOrThrow("remind", null, contentValues);
+			}
+		} catch (Exception e) {
+		} finally {
+			db.close();
+		}
+	}
+
+	public int getRemindStatus(String title, String remind_time) {
+		SQLiteDatabase db = mDBHelper.getReadableDatabase();
+		String[] arrayOfString = new String[2];
+		arrayOfString[0] = title;
+		arrayOfString[1] = remind_time;
+		Cursor cursor = db.rawQuery(
+				"SELECT count(*) FROM remind where title=? and remind_time=?",
+				arrayOfString);
+		cursor.moveToNext();
+		int i = cursor.getInt(0);
+		cursor.close();
+		db.close();
+		return i;
 	}
 }

@@ -95,6 +95,16 @@
             android:theme="@android:style/Theme.NoTitleBar" >
         </activity>
         <activity
+            android:name="com.mg_movie.activity.MG_CNTV"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
+            android:name="com.mg_movie.activity.TvDetailActivity"
+            android:label="@string/app_name"
+            android:theme="@android:style/Theme.NoTitleBar" >
+        </activity>
+        <activity
             android:name="com.mg_movie.player.JieLiveVideoPlayer"
             android:label="@string/app_name"
             android:screenOrientation="landscape"

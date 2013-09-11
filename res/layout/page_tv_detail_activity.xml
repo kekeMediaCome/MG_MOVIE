@@ -1,0 +1,107 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="fill_parent"
+    android:layout_height="fill_parent"
+    android:gravity="center_horizontal"
+    android:orientation="vertical" >
+
+    <FrameLayout
+        android:id="@+id/topFrame"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/phonetitlebar_bg" >
+
+        <Button
+            android:id="@id/back_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center_vertical"
+            android:background="@drawable/cbox_detail_close" />
+
+        <TextView
+            android:id="@id/title_text"
+            style="@style/activity_title_text"
+            android:text="@string/category_live" />
+
+        <Button
+            android:id="@id/collect_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="right|center"
+            android:background="@drawable/cbox_detail_shoucang_selector" />
+    </FrameLayout>
+
+    <HorizontalScrollView
+        android:id="@+id/sv_btn"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@drawable/cbox_ucenter_category_bg"
+        android:paddingBottom="5.0dip"
+        android:paddingTop="5.0dip"
+        android:layout_below="@id/topFrame"
+        android:scrollbars="none" >
+
+        <RadioGroup
+            android:id="@id/week_group"
+            android:layout_width="500.0dip"
+            android:layout_height="wrap_content"
+            android:gravity="center_vertical"
+            android:orientation="horizontal" >
+
+            <RadioButton
+                android:id="@id/play_time_one"
+                style="@style/ucenter_category_radiobutton"
+                android:text="@string/play_time_one" />
+
+            <RadioButton
+                android:id="@id/play_time_two"
+                style="@style/ucenter_category_radiobutton"
+                android:text="@string/play_time_two" />
+
+            <RadioButton
+                android:id="@id/play_time_three"
+                style="@style/ucenter_category_radiobutton"
+                android:text="@string/play_time_three" />
+
+            <RadioButton
+                android:id="@id/play_time_four"
+                style="@style/ucenter_category_radiobutton"
+                android:text="@string/play_time_four" />
+
+            <RadioButton
+                android:id="@id/play_time_five"
+                style="@style/ucenter_category_radiobutton"
+                android:text="@string/play_time_five" />
+
+            <RadioButton
+                android:id="@id/play_time_six"
+                style="@style/ucenter_category_radiobutton"
+                android:text="@string/play_time_six" />
+
+            <RadioButton
+                android:id="@id/play_time_seven"
+                style="@style/ucenter_category_radiobutton"
+                android:text="@string/play_time_seven" />
+        </RadioGroup>
+    </HorizontalScrollView>
+
+    <ListView
+        android:id="@id/listview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="#ff2f2f2f"
+        android:cacheColorHint="#00000000"
+        android:divider="@drawable/cbox_uc_divider"
+        android:fadeScrollbars="false"
+        android:fastScrollEnabled="false"
+        android:focusable="true"
+        android:focusableInTouchMode="true"
+        android:scrollbars="none"
+        android:transcriptMode="alwaysScroll"
+        android:stackFromBottom="true"
+        android:scrollingCache="false" 
+        android:layout_below="@id/sv_btn"
+        android:layout_marginTop="0.0dp"
+        />
+
+</RelativeLayout>

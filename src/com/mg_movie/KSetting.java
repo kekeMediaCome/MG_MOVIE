@@ -25,4 +25,13 @@ public class KSetting {
 
 	public static String rushplayer = "http://rushplayer.com/wapstream.aspx?v=1.54&t=2&g=278&app=1000";
 	public static String rushplayer_head = "http://rushplayer.com/";
+
+	public static String cntv_url = "http://api.cbox.cntv.cn/api/";
+	
+	public static final String IFACE_GET_MEDIA_TYPE = "mediatype_list";
+	public static final String PID = "GC3ueQnxE8PrWVRkmaUvsJHZqNiXpgdz";
+	public static final String CNTV_VERSION = "1.0.3";
+	
+
+
 }

@@ -42,6 +42,10 @@ public class MG_Live extends MG_BaseActivity implements OnClickListener{
 			intent.setClass(MG_Live.this, MG_CUTV.class);
 			startActivity(intent);
 			break;
+		case R.id.live_3:
+			intent.setClass(MG_Live.this, MG_CNTV.class);
+			startActivity(intent);
+			break;
 		case R.id.live_4:
 			intent.setClass(MG_Live.this, MG_Custom.class);
 			startActivity(intent);
