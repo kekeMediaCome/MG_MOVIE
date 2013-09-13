@@ -6,16 +6,16 @@ import java.util.List;
 import org.json.JSONArray;
 import org.json.JSONObject;
 
-import com.mg_movie.json.PlayBackInfoParse;
-import com.mg_movie.type.PlayBackInfo;
+import com.mg_movie.json.JsonParserCntvPlayBackInfo;
+import com.mg_movie.type.Type_Cntv_PlayBackInfo;
 import com.mg_movie.utils.HttpApiImpl;
 
-public class PlayBackDAO {
-	public List<PlayBackInfo> getPlayBackList(String url){
-		List<PlayBackInfo> list = new ArrayList<PlayBackInfo>();
+public class CntvPlayBackDAO {
+	public List<Type_Cntv_PlayBackInfo> getPlayBackList(String url){
+		List<Type_Cntv_PlayBackInfo> list = new ArrayList<Type_Cntv_PlayBackInfo>();
 		try {
 			String result_json = new HttpApiImpl().doHttpGet(url);
-			 PlayBackInfoParse backInfoParse = new PlayBackInfoParse();
+			 JsonParserCntvPlayBackInfo backInfoParse = new JsonParserCntvPlayBackInfo();
 			JSONObject result_Obj = new JSONObject(result_json);
 			JSONArray chapters = result_Obj.getJSONObject("video").getJSONArray("chapters");
 			int size = chapters.length();

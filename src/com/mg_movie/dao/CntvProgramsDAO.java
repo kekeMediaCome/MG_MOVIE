@@ -7,12 +7,12 @@ import org.json.JSONArray;
 import org.json.JSONObject;
 
 import com.mg_movie.KSetting;
-import com.mg_movie.json.ProgramsParse;
+import com.mg_movie.json.JsonParserCntvPrograms;
 import com.mg_movie.type.Type_Cntv_Programs;
 import com.mg_movie.utils.HttpApiImpl;
 import com.mg_movie.utils.JSONUtils;
 
-public class ProgramsDAO{
+public class CntvProgramsDAO{
 	
 	public List<Type_Cntv_Programs> getPrograms(String channelid, String currentdate){
 		List<Type_Cntv_Programs> list = new ArrayList<Type_Cntv_Programs>();
@@ -24,7 +24,7 @@ public class ProgramsDAO{
 			String json_result = new HttpApiImpl().doHttpGet(url);
 			JSONObject result = JSONUtils.getBodyAndCheckHeader(url, json_result);
 			JSONArray pragramsArray = result.getJSONArray("programs");
-			ProgramsParse programsParse = new ProgramsParse(currentdate);
+			JsonParserCntvPrograms programsParse = new JsonParserCntvPrograms(currentdate);
 			int size = pragramsArray.length();
 			for (int i = 0; i < size; i++) {
 				list.add(programsParse.parse(pragramsArray.getJSONObject(i)));

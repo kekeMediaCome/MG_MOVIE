@@ -76,7 +76,7 @@ public class MG_CNTV extends AbsListViewBaseActivity implements
 						.get(position);
 				bundle.putParcelable("TvChannel", tvChannel);
 				intent.putExtras(bundle);
-				intent.setClass(MG_CNTV.this, TvDetailActivity.class);
+				intent.setClass(MG_CNTV.this, MG_CNTV_Channel.class);
 				startActivity(intent);
 			}
 		});

@@ -2,7 +2,7 @@ package com.mg_movie.type;
 
 import java.io.Serializable;
 
-public class PlayBackInfo implements Serializable {
+public class Type_Cntv_PlayBackInfo implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	private String duration;

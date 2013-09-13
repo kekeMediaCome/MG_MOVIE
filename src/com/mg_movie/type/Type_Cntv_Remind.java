@@ -2,7 +2,7 @@ package com.mg_movie.type;
 
 import java.io.Serializable;
 
-public class Remind implements Serializable {
+public class Type_Cntv_Remind implements Serializable {
 
 	private static final long serialVersionUID = 1L;
 	public static final int STATUS_IS_NEW = 1;

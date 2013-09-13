@@ -5,10 +5,10 @@ import org.json.JSONObject;
 
 import com.mg_movie.type.Type_Cntv_Programs;
 
-public class ProgramsParse {
+public class JsonParserCntvPrograms {
 	String realTime;
 
-	public ProgramsParse(String paramString) {
+	public JsonParserCntvPrograms(String paramString) {
 		this.realTime = paramString;
 	}
 

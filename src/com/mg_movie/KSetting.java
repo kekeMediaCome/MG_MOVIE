@@ -28,6 +28,11 @@ public class KSetting {
 
 	public static String cntv_url = "http://api.cbox.cntv.cn/api/";
 	
+	public static String yinyuetai_url = "http://mv.yinyuetai.com/all?pageType=page&sort=totalViews&page=1&tab=allmv&parenttab=mv";
+	public static String yinyuetai_url_head = "http://mv.yinyuetai.com/all?pageType=page&sort=totalViews&page=";
+	public static String yinyuetai_url_end = "&tab=allmv&parenttab=mv";
+	
+	
 	public static final String IFACE_GET_MEDIA_TYPE = "mediatype_list";
 	public static final String PID = "GC3ueQnxE8PrWVRkmaUvsJHZqNiXpgdz";
 	public static final String CNTV_VERSION = "1.0.3";

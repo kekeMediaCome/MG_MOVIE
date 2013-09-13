@@ -11,7 +11,8 @@ import android.database.sqlite.SQLiteDatabase;
 
 import com.mg_movie.AppLog;
 import com.mg_movie.db.DBHelper;
-import com.mg_movie.type.Remind;
+import com.mg_movie.type.Type_Cntv_Remind;
+import com.mg_movie.type.Type_YinYueTai;
 import com.mg_movie.type.Type_cartoon;
 import com.mg_movie.type.Type_live_togic_1;
 import com.mg_movie.type.Type_tv;
@@ -129,6 +130,29 @@ public class DBUtils implements Serializable {
 			e.printStackTrace();
 		}
 	}
+	
+	/**
+	 * 插入一首音乐
+	 * @param music
+	 */
+	public void insertMusci(Type_YinYueTai music){
+		SQLiteDatabase db = null;
+		try {
+			db = mDBHelper.getWritableDatabase();
+			Type_YinYueTai musicTai = music;
+			ContentValues contentValues = new ContentValues();
+			contentValues.put("mc_title", musicTai.getMusic_title());
+			contentValues.put("mc_url", musicTai.getMusic_url());
+			contentValues.put("mc_urlstite", musicTai.getMusic_urlstite());
+			contentValues.put("mc_img", musicTai.getMusic_img());
+			contentValues.put("mc_shdIco", musicTai.getMusic_shdIco());
+			contentValues.put("mc_time", musicTai.getMusic_time());
+			contentValues.put("mc_player", musicTai.getMusic_player());
+			db.insertOrThrow("music", null, contentValues);
+			AppLog.e(musicTai.getMusic_title() + "  :插入");
+		} catch (Exception e) {
+		}
+	}
 
 	/**
 	 * 获取所有的movie的視頻的个数
@@ -168,6 +192,20 @@ public class DBUtils implements Serializable {
 	public int getCTCount() {
 		SQLiteDatabase db = mDBHelper.getReadableDatabase();
 		Cursor cursor = db.rawQuery("SELECT count(*) FROM ct", null);
+		cursor.moveToNext();
+		int coutn = cursor.getInt(0);
+		cursor.close();
+		db.close();
+		return coutn;
+	}
+	/**
+	 * 获取所有的音乐的个数
+	 * 
+	 * @return
+	 */
+	public int getMusicCount(){
+		SQLiteDatabase db = mDBHelper.getReadableDatabase();
+		Cursor cursor = db.rawQuery("SELECT count(*) FROM music", null);
 		cursor.moveToNext();
 		int coutn = cursor.getInt(0);
 		cursor.close();
@@ -333,6 +371,33 @@ public class DBUtils implements Serializable {
 		}
 		return lives;
 	}
+	
+	/**
+	 * 得到所有的音樂頻道
+	 * @return
+	 */
+	public ArrayList<Type_YinYueTai> getAllMusics(){
+		ArrayList<Type_YinYueTai> lists = new ArrayList<Type_YinYueTai>();
+		try {
+			SQLiteDatabase db = mDBHelper.getReadableDatabase();
+			Cursor cursor = db.rawQuery("SELECT * FROM music", null);
+			while (cursor.moveToNext()) {
+				Type_YinYueTai music = new Type_YinYueTai();
+				music.setMusic_id(cursor.getInt(0));
+				music.setMusic_title(cursor.getString(1));
+				music.setMusic_url(cursor.getString(2));
+				music.setMusic_urlstite(cursor.getString(3));
+				music.setMusic_img(cursor.getString(4));
+				music.setMusic_shdIco(cursor.getString(5));
+				music.setMusic_time(cursor.getString(6));
+				music.setMusic_player(cursor.getString(7));
+				lists.add(music);
+			}
+		} catch (Exception e) {
+			e.printStackTrace();
+		}
+		return lists;
+	}
 
 	public void deleteAllCollects() {
 		SQLiteDatabase localSQLiteDatabase = mDBHelper.getWritableDatabase();
@@ -409,7 +474,7 @@ public class DBUtils implements Serializable {
 		return i;
 	}
 
-	public void insertRemind(Remind paramRemind) {
+	public void insertRemind(Type_Cntv_Remind paramRemind) {
 		SQLiteDatabase db = null;
 		try {
 			if (!StringUtils.isBlank(paramRemind.getTitle())) {

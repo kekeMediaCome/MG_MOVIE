@@ -7,11 +7,11 @@ import java.util.List;
 
 import com.mg_movie.MG_App;
 import com.mg_movie.R;
-import com.mg_movie.activity.TvDetailActivity;
-import com.mg_movie.dao.PlayBackDAO;
+import com.mg_movie.activity.MG_CNTV_Channel;
+import com.mg_movie.dao.CntvPlayBackDAO;
 import com.mg_movie.player.JieLiveVideoPlayer;
-import com.mg_movie.type.PlayBackInfo;
-import com.mg_movie.type.Remind;
+import com.mg_movie.type.Type_Cntv_PlayBackInfo;
+import com.mg_movie.type.Type_Cntv_Remind;
 import com.mg_movie.type.Type_Cntv_Channel;
 import com.mg_movie.type.Type_Cntv_Programs;
 import com.mg_movie.utils.DBUtils;
@@ -93,13 +93,13 @@ public class MG_Live_Cntv_ProgramAdapter extends BaseAdapter {
 
 	public boolean addRemind(Type_Cntv_Programs paramPrograms, View paramView) {
 		try {
-			String channel_name = TvDetailActivity.mCurTvChannel
+			String channel_name = MG_CNTV_Channel.mCurTvChannel
 					.getChannelname();
 			// String real_time = String.valueOf(paramPrograms.getRealTime());
 			// StringBuffer buffer = new StringBuffer(real_time).append(" ");
 			String show_time = paramPrograms.getShowtime() + ":00";
 			String remind_time = switchDate(show_time);
-			Remind localRemind = new Remind();
+			Type_Cntv_Remind localRemind = new Type_Cntv_Remind();
 			localRemind.setTitle(paramPrograms.getTitle());
 			localRemind.setChannel_name(channel_name);
 			localRemind.setRemind_time(remind_time);
@@ -128,8 +128,8 @@ public class MG_Live_Cntv_ProgramAdapter extends BaseAdapter {
 				String playBack = programs.getPlayback();
 				// String title = programs.getTitle();
 				try {
-					PlayBackDAO localPlayBackDAO = new PlayBackDAO();
-					List<PlayBackInfo> list = localPlayBackDAO
+					CntvPlayBackDAO localPlayBackDAO = new CntvPlayBackDAO();
+					List<Type_Cntv_PlayBackInfo> list = localPlayBackDAO
 							.getPlayBackList(playBack);
 					Intent intent = new Intent(activity,
 							JieLiveVideoPlayer.class);
@@ -205,7 +205,7 @@ public class MG_Live_Cntv_ProgramAdapter extends BaseAdapter {
 		String show_time = programs.getShowtime();
 		viewHolder.program_time.setText(show_time);
 
-		int select_week = TvDetailActivity.monclicweekday;
+		int select_week = MG_CNTV_Channel.monclicweekday;
 		int today_week = MG_Utils.getTodayWeek();
 		if (select_week < today_week) {
 			if (mCurTvChannel.getViewback() == 1) {
@@ -231,7 +231,7 @@ public class MG_Live_Cntv_ProgramAdapter extends BaseAdapter {
 								Message msg = new Message();
 								msg.what = 0;
 								msg.arg1 = position;
-								TvDetailActivity.handler.sendMessage(msg);
+								MG_CNTV_Channel.handler.sendMessage(msg);
 							} else {
 								if (mCurTvChannel.getViewback() == 1) {
 									playBackBtn(viewHolder);
@@ -244,7 +244,7 @@ public class MG_Live_Cntv_ProgramAdapter extends BaseAdapter {
 							Message msg = new Message();
 							msg.what = 0;
 							msg.arg1 = position;
-							TvDetailActivity.handler.sendMessage(msg);
+							MG_CNTV_Channel.handler.sendMessage(msg);
 						}
 					} else {
 						if (mCurTvChannel.getViewback() == 1) {

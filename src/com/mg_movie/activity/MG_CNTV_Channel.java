@@ -4,7 +4,7 @@ import java.util.List;
 
 import com.mg_movie.R;
 import com.mg_movie.adapter.MG_Live_Cntv_ProgramAdapter;
-import com.mg_movie.dao.ProgramsDAO;
+import com.mg_movie.dao.CntvProgramsDAO;
 import com.mg_movie.type.Type_Cntv_Channel;
 import com.mg_movie.type.Type_Cntv_Programs;
 import com.mg_movie.utils.MG_Utils;
@@ -27,7 +27,7 @@ import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.RadioGroup.OnCheckedChangeListener;
 
-public class TvDetailActivity extends Activity implements OnItemClickListener,
+public class MG_CNTV_Channel extends Activity implements OnItemClickListener,
 		OnCheckedChangeListener, OnClickListener {
 	public static Type_Cntv_Channel mCurTvChannel;
 	public static int monclicweekday = 1;
@@ -41,7 +41,7 @@ public class TvDetailActivity extends Activity implements OnItemClickListener,
 	public static Handler handler;
 	public ProgressDialog progressDialog;
 
-	public TvDetailActivity() {
+	public MG_CNTV_Channel() {
 		mCurWeek = 1;
 	}
 
@@ -50,7 +50,7 @@ public class TvDetailActivity extends Activity implements OnItemClickListener,
 	protected void onCreate(Bundle savedInstanceState) {
 		super.onCreate(savedInstanceState);
 		setContentView(R.layout.page_tv_detail_activity);
-		progressDialog = new ProgressDialog(TvDetailActivity.this);
+		progressDialog = new ProgressDialog(MG_CNTV_Channel.this);
 		progressDialog.setMessage("加载中...");
 		initTime();
 		initLayout();
@@ -107,7 +107,7 @@ public class TvDetailActivity extends Activity implements OnItemClickListener,
 		@Override
 		protected Void doInBackground(Void... paramArrayOfVoid) {
 			try {
-				ProgramsDAO programsDAO = new ProgramsDAO();
+				CntvProgramsDAO programsDAO = new CntvProgramsDAO();
 				mCurProgramList = programsDAO.getPrograms(channelID, dateTime);
 			} catch (Exception e) {
 
