@@ -17,16 +17,17 @@ public class Parser_music_yinyuetai_com {
 		ArrayList<String> listPage = new ArrayList<String>();
 		try {
 			Document document = Jsoup.connect(url).get();
-			Element pageNav = document.getElementById("pagetype").getElementById("pageNav");
+			Element pageNav = document.getElementById("pageNav");
 			Elements pages = pageNav.select("span.separator");
 			if (pages != null && pages.size() != 0) {
-				int count = Integer.parseInt(pages.get(0).text().trim());
+				int count = pages.size();
+				String page = pages.get(count - 1).text().trim();
+				count = Integer.parseInt(page.substring(1, page.length()-1));
 				StringBuffer buffer = new StringBuffer();
 				for (int i = 1; i <= count; i++) {
 					buffer.append(KSetting.yinyuetai_url_head).append(i)
 							.append(KSetting.yinyuetai_url_end);
 					listPage.add(buffer.toString());
-					AppLog.e(buffer.toString());
 					buffer.delete(0, buffer.length());
 				}
 			}
@@ -43,22 +44,49 @@ public class Parser_music_yinyuetai_com {
 			Element mv_list_vertical = document.getElementById("mvlist");
 			Elements musics = mv_list_vertical.select("li");
 			Type_YinYueTai yinyue = null;
+			int index = 0;
 			for (Element music : musics) {
+				index++;
 				yinyue = new Type_YinYueTai();
 				Element thumb_mv = music.select("div.thumb_mv").get(0);
 				Element a = thumb_mv.select("a").get(0);
 				yinyue.setMusic_url(a.attr("href"));
-				Element img = a.select("img.src").get(0);
-				yinyue.setMusic_img(img.attr("src"));
-				yinyue.setMusic_shdIco(thumb_mv.select("div.shdIco").get(0).text().trim());
-				yinyue.setMusic_time(thumb_mv.select("div.v_time_num").get(0).text().trim());
+				Elements img = a.select("img");
+				if (img != null && img.size() != 0) {
+					yinyue.setMusic_img(img.get(0).attr("src"));
+				}else {
+					yinyue.setMusic_img("http://imgstatic.baidu.com/img/image/shouye/1f178a82b9014a900a9e7492a8773912b31bee79.jpg");
+				}
+				Elements shdIcoElement = thumb_mv.select("div.shdIco");
+				if (shdIcoElement != null && shdIcoElement.size() != 0) {
+					yinyue.setMusic_shdIco(shdIcoElement.get(0).text().trim());
+				}else {
+					yinyue.setMusic_shdIco("");
+				}
+				Elements v_timeElements = thumb_mv.select("div.v_time_num");
+				if (v_timeElements != null && v_timeElements.size() != 0) {
+					yinyue.setMusic_time(v_timeElements.get(0).text().trim());
+				}else {
+					yinyue.setMusic_time("");
+				}
 				Element info = music.select("div.info").get(0);
-				Element a_title = info.select("a.special").get(0);
-				yinyue.setMusic_url(a_title.attr("href"));
-				yinyue.setMusic_title(a_title.attr("title"));
-				yinyue.setMusic_player(info.select("a.c3").get(0).text().trim());
+				String href = "";
+				String title = "";
+				String player = "";
+				if (info != null) {
+					Element a_title = info.select("a.special").get(0);
+						if (a_title != null) {
+							href = a_title.attr("href");
+							title = a_title.attr("title");
+							player = info.select("a.c3").get(0).text().trim();
+						}
+				}
+				yinyue.setMusic_url(href);
+				yinyue.setMusic_title(title);
+				yinyue.setMusic_player(player);
 				yinyue.setMusic_urlstite(url);
 				lists.add(yinyue);
+				AppLog.e("第 "+index+"  标题：  "+title);
 				yinyue = null;
 			}
 		} catch (Exception e) {

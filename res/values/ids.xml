@@ -5,6 +5,7 @@
     <item name="mainlayout_gridview" type="id"></item>
     <item name="splash_img" type="id">false</item>
     <item name="pull_refresh_grid" type="id">false</item>
+    <item name="music_listview" type="id">false</item>
     <item name="video_img" type="id">false</item>
     <item name="video_title" type="id">false</item>
     <item name="video_mask" type="id">false</item>
@@ -30,6 +31,8 @@
     <item name="tv_item_logo" type="id">false</item>
     <item name="tv_item_title" type="id">false</item>
     <item name="tv_item_mark_txt" type="id">false</item>
+    <item name="tv_item_time" type="id">false</item>
+    <item name="tv_item_hd" type="id">false</item>
     <item name="live_1" type="id">false</item>
     <item name="live_2" type="id">false</item>
     <item name="live_3" type="id">false</item>

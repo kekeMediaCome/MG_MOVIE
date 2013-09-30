@@ -6,15 +6,16 @@
     android:padding="10.0dip" >
 
     <RelativeLayout
-        android:layout_width="120.0px"
-        android:layout_height="160.0px" >
+        android:layout_width="160.0px"
+        android:layout_height="120.0px" >
 
         <TextView
             android:id="@id/tv_item_hd"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_gravity="center"
-            android:layout_marginTop="2dip" />
+            android:layout_marginTop="2dip"
+            android:gravity="center" />
 
         <ImageView
             android:id="@id/tv_item_logo"
@@ -31,7 +32,8 @@
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
             android:layout_gravity="center"
-            android:layout_marginBottom="2dp" />
+            android:layout_marginBottom="2dp"
+            android:gravity="center" />
     </RelativeLayout>
 
     <LinearLayout

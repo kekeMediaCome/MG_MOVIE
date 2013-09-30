@@ -45,7 +45,7 @@ public class Parse_home_content {
 			type = new Type_home_content();
 			type.setImg_id(R.drawable.mjicon_6);
 			type.setTitle_id(R.string.mjicon_6_title);
-			type.setCls_packet(cls_packets[0]);
+			type.setCls_packet("com.mg_movie.activity.MG_Music");
 			lists.add(type);
 			type = new Type_home_content();
 			type.setImg_id(R.drawable.mjicon_7);
